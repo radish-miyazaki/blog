@@ -11,14 +11,8 @@ Vue.use(VueRouter);
 
 // パスとコンポーネントのマッピング
 const routes = [
-  {
-    path: '',
-    component: Index
-  },
-  {
-    path: '/login',
-    component: Login
-  }
+  { path: '', component: Index },
+  { path: '/login', component: Login }
 ];
 
 // VueRouterインスタンスを作成する
