@@ -38,6 +38,10 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
+            // 追加
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            // 追加ここまで
             'throttle:60,1',
             'bindings',
         ],
