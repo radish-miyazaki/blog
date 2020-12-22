@@ -16,6 +16,20 @@
           ログイン
         </router-link>
       </v-btn>
+      <v-btn dark class="mx-3 font-weight-bold" @click="logout">
+        ログアウト
+      </v-btn>
     </v-app-bar>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    async logout() {
+      await this.$store.dispatch('auth/logout')
+      this.$router.push('/login')
+    }
+  }
+}
+</script>
