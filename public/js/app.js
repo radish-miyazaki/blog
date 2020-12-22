@@ -1985,7 +1985,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    isLogin: function isLogin() {
+      return this.$store.getters['auth/check'];
+    },
+    nickname: function nickname() {
+      return this.$store.getters['auth/nickname'];
+    }
+  },
   methods: {
     logout: function logout() {
       var _this = this;
@@ -21378,34 +21395,63 @@ var render = function() {
           _vm._v(" "),
           _c("v-spacer"),
           _vm._v(" "),
-          _c("span", [_vm._v(" username ")]),
-          _vm._v(" "),
-          _c(
-            "v-btn",
-            { staticClass: "mx-3", attrs: { dark: "" } },
-            [
-              _c(
-                "router-link",
-                {
-                  staticClass:
-                    "white--text text-decoration-none font-weight-bold",
-                  attrs: { to: "/login" }
-                },
-                [_vm._v("\n        ログイン\n      ")]
+          _vm.isLogin
+            ? _c(
+                "div",
+                [
+                  _c("span", [_vm._v(" " + _vm._s(_vm.nickname) + " ")]),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "mx-3 font-weight-bold",
+                      attrs: { dark: "" },
+                      on: { click: _vm.logout }
+                    },
+                    [_vm._v("\n        ログアウト\n      ")]
+                  )
+                ],
+                1
               )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-btn",
-            {
-              staticClass: "mx-3 font-weight-bold",
-              attrs: { dark: "" },
-              on: { click: _vm.logout }
-            },
-            [_vm._v("\n      ログアウト\n    ")]
-          )
+            : _c(
+                "div",
+                [
+                  _c(
+                    "v-btn",
+                    { attrs: { dark: "" } },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass:
+                            "white--text text-decoration-none font-weight-bold",
+                          attrs: { to: "/register" }
+                        },
+                        [_vm._v("\n          登録\n        ")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    { staticClass: "mx-3", attrs: { dark: "" } },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass:
+                            "white--text text-decoration-none font-weight-bold",
+                          attrs: { to: "/login" }
+                        },
+                        [_vm._v("\n          ログイン\n        ")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
         ],
         1
       )
@@ -82791,7 +82837,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // VueRouterプラグインを使用する
-// これによって<RouterView />コンポーネントなどを使うことができる
+// これによって<router-link />コンポーネントなどを使うことができる
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 // パスとコンポーネントのマッピング
 var routes = [
@@ -82862,13 +82908,21 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 var state = {
     user: null
 };
-var getters = {};
+var getters = {
+    check: function (state) { return !!state.user; },
+    nickname: function (state) { return state.user ? state.user.nickname : ''; }
+};
 var mutations = {
     setUser: function (state, user) {
         state.user = user;
     }
 };
 var actions = {
+    /**
+     * ユーザ登録時にデータをAPIにPOSTする
+     * @param commit
+     * @param data
+     */
     register: function (_a, data) {
         var commit = _a.commit;
         return __awaiter(this, void 0, void 0, function () {
@@ -82884,6 +82938,11 @@ var actions = {
             });
         });
     },
+    /**
+     * ログイン時にデータをAPIにPOSTする
+     * @param commit
+     * @param data
+     */
     login: function (_a, data) {
         var commit = _a.commit;
         return __awaiter(this, void 0, void 0, function () {
@@ -82899,6 +82958,10 @@ var actions = {
             });
         });
     },
+    /**
+     * ログアウト時に空のデータをPOSTする
+     * @param commit
+     */
     logout: function (_a) {
         var commit = _a.commit;
         return __awaiter(this, void 0, void 0, function () {

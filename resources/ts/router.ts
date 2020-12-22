@@ -7,7 +7,7 @@ import Index from './pages/Index.vue';
 import Register from './pages/Register.vue';
 
 // VueRouterプラグインを使用する
-// これによって<RouterView />コンポーネントなどを使うことができる
+// これによって<router-link />コンポーネントなどを使うことができる
 Vue.use(VueRouter);
 
 // パスとコンポーネントのマッピング
