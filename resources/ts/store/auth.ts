@@ -41,8 +41,19 @@ const actions = {
    * @param commit
    */
   async logout({ commit }: any) {
-    const response = await axios.post('/api/logout')
+    await axios.post('api/logout')
     commit('setUser', null)
+  },
+
+  /**
+   * ログイン中のユーザを取得する
+   * @param commit
+   */
+  async currentUser({ commit }: any) {
+    const response = await axios.get('/api/user')
+    console.log(response)
+    const user = response.data || null
+    commit('setUser', user)
   }
 }
 
