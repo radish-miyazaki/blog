@@ -23,7 +23,8 @@ class BlogResource extends JsonResource
             'user' => [
                 'id' => $this->user->id,
                 'nickname' => $this->user->nickname
-            ]
+            ],
+            'comments' => new CommentResource($this->comments),
         ];
     }
 }

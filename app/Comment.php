@@ -17,6 +17,6 @@ class Comment extends Model
     }
 
     protected $fillable = [
-        'title', 'user_id', 'blog_id'
+        'text', 'user_id', 'blog_id'
     ];
 }

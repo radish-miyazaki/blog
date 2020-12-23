@@ -18,7 +18,7 @@ class BlogController extends Controller
 
     public function show($id)
     {
-        $blog = Blog::with('user')->where('id', $id)->first();
+        $blog = Blog::with('user', 'comments.user')->where('id', $id)->first();
 
         return new BlogResource($blog);
     }
