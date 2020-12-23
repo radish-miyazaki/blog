@@ -21,7 +21,7 @@
           depressed
           large
         >
-          <router-link to="/postblog" class="white--text text-decoration-none font-weight-bold">
+          <router-link to="/blogs/post" class="white--text text-decoration-none font-weight-bold">
             投稿する
           </router-link>
         </v-btn>

@@ -5,6 +5,15 @@
     flat
     max-width="640"
   >
+    <div v-if="isAuthor" class="text-right pt-3">
+      <v-btn
+        color="primary"
+      >
+        <router-link :to="`/blogs/${this.blog.id}/edit`" class="font-weight-bold white--text text-decoration-none">
+          編集する
+        </router-link>
+      </v-btn>
+    </div>
     <div v-if="blog">
       <v-card-title class="text-center pa-8">
         <h3>{{ blog.title }}</h3>
@@ -33,7 +42,8 @@ export default {
 
   data() {
     return {
-      blog: null
+      blog: null,
+      isAuthor: false,
     }
   },
 
@@ -42,6 +52,7 @@ export default {
       const response = await axios.get(`/api/blogs/${this.id}`)
 
       this.blog = response.data.data
+      this.isAuthor = this.blog.user.id === this.$store.getters['auth/id']
     }
   },
 

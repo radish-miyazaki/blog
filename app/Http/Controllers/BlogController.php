@@ -35,4 +35,16 @@ class BlogController extends Controller
 
         return redirect('api/blogs');
     }
+
+    public function update(Request $request, $id)
+    {
+        $blog = Blog::with('user')->where('id', $id)->first();
+
+        $blog->title = $request->title;
+        $blog->body = $request->body;
+
+        $blog->update();
+
+        return redirect('api/blogs');
+    }
 }

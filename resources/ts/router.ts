@@ -8,6 +8,7 @@ import Index from './pages/Index.vue';
 import Register from './pages/Register.vue';
 import PostBlog from './pages/PostBlog.vue';
 import ShowBlog from './pages/ShowBlog.vue';
+import EditBlog from './pages/EditBlog.vue';
 
 // VueRouterプラグインを使用する
 // これによって<router-link />コンポーネントなどを使うことができる
@@ -40,10 +41,15 @@ const routes = [{ path: '', component: Index },
   {
     path: '/blogs/:id',
     component: ShowBlog,
+    props: true,
+  },
+  {
+    path: '/blogs/:id/edit',
+    component: EditBlog,
     props: true
   },
   {
-    path: '/postblog',
+    path: '/blogs/post',
     component: PostBlog,
     beforeEnter(_: any, _2: any, next: any) {
       if(!store.getters['auth/check']) {
