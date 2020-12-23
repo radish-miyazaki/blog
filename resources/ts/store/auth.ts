@@ -51,7 +51,6 @@ const actions = {
    */
   async currentUser({ commit }: any) {
     const response = await axios.get('/api/user')
-    console.log(response)
     const user = response.data || null
     commit('setUser', user)
   }

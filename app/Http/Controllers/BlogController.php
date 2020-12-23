@@ -11,13 +11,14 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::with('user')->paginate(10);
+
         return BlogResource::collection($blogs);
     }
 
     public function show($id)
     {
-        $blog = DB::table('blogs')->where('id', $id)->first();
+        $blog = Blog::with('user')->where('id', $id)->first();
 
         return new BlogResource($blog);
     }

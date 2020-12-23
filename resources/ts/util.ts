@@ -8,8 +8,6 @@ export function getCookieValue(searchKey: any) {
     return ''
   }
 
-  console.log(document.cookie);
-
   let val: string = ''
 
   document.cookie.split(';').forEach(cookie => {
