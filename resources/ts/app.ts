@@ -1,6 +1,7 @@
 import bootstrap from "./bootstrap";
 import Vue from 'vue';
 import "vuetify/dist/vuetify.min.css";
+import '@mdi/font/css/materialdesignicons.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css';
 import Vuetify from 'vuetify';
 import router from './router';
