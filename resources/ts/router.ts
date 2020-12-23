@@ -6,6 +6,7 @@ import store from './store';
 import Login from './pages/Login.vue';
 import Index from './pages/Index.vue';
 import Register from './pages/Register.vue';
+import PostBlog from './pages/PostBlog.vue';
 
 // VueRouterプラグインを使用する
 // これによって<router-link />コンポーネントなどを使うことができる
@@ -30,6 +31,18 @@ const routes = [{ path: '', component: Index },
     beforeEnter (_: any, _2: any, next: any) {
       if (store.getters['auth/check']) {
         next('/')
+      } else {
+        next()
+      }
+    },
+  },
+  {
+    path: '/postblog',
+    component: PostBlog,
+    beforeEnter(_: any, _2: any, next: any) {
+      if(!store.getters['auth/check']) {
+        alert('先にログインしてください。')
+        next('/login')
       } else {
         next()
       }
