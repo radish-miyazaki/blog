@@ -22,4 +22,17 @@ class BlogController extends Controller
 
         return new BlogResource($blog);
     }
+
+    public function store(Request $request)
+    {
+        $blog = new Blog;
+
+        $blog->title = $request->title;
+        $blog->body = $request->body;
+        $blog->user_id = $request->user_id;
+
+        $blog->save();
+
+        return redirect('api/blogs');
+    }
 }

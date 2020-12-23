@@ -18,12 +18,14 @@
             outlined
             class="mb-2"
             label="タイトル"
+            v-model="postForm.title"
           ></v-text-field>
           <v-textarea
             label="本文"
             dense
             outlined
             height="150px"
+            v-model="postForm.body"
           ></v-textarea>
 
         </div>
@@ -34,6 +36,7 @@
             height="48px"
             tile
             class="font-weight-bold"
+            @click.prevent="post"
           >
             投稿する
           </v-btn>
@@ -44,11 +47,27 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-name: "Blog"
+  name: "Blog",
+
+  data() {
+    return {
+      postForm: {
+        title: '',
+        body: '',
+        user_id: '',
+      }
+    }
+  },
+
+  methods: {
+    async post() {
+      this.postForm.user_id = this.$store.getters['auth/id']
+      await axios.post('/api/blogs', this.postForm)
+      await this.$router.push('/')
+    }
+  }
 }
 </script>
-
-<style scoped>
-
-</style>
