@@ -7,6 +7,7 @@ import Login from './pages/Login.vue';
 import Index from './pages/Index.vue';
 import Register from './pages/Register.vue';
 import PostBlog from './pages/PostBlog.vue';
+import ShowBlog from './pages/ShowBlog.vue';
 
 // VueRouterプラグインを使用する
 // これによって<router-link />コンポーネントなどを使うことができる
@@ -35,6 +36,11 @@ const routes = [{ path: '', component: Index },
         next()
       }
     },
+  },
+  {
+    path: '/blogs/:id',
+    component: ShowBlog,
+    props: true
   },
   {
     path: '/postblog',

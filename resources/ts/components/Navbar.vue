@@ -5,7 +5,7 @@
       color="teal"
     >
       <v-toolbar-title>
-        <router-link to="/" class="text-decoration-none text-decoration-none font-weight-bold white--text">
+        <router-link to="/" class="text-decoration-none font-weight-bold white--text">
           miniBLOG
         </router-link>
       </v-toolbar-title>
