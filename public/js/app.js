@@ -2181,6 +2181,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "EditBlog",
@@ -2214,19 +2224,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 response = _context.sent;
                 _this.blog = response.data.data;
 
-                if (!(_this.blog.user.id !== _this.$store.getters['auth/id'])) {
-                  _context.next = 7;
-                  break;
+                if (_this.blog.user.id !== _this.$store.getters['auth/id']) {
+                  _this.$router.push('/');
                 }
 
-                _context.next = 7;
-                return _this.$router.push('/');
-
-              case 7:
                 _this.title = _this.blog.title;
                 _this.body = _this.blog.body;
 
-              case 9:
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -2257,27 +2262,55 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee2);
       }))();
+    },
+    destroy: function destroy() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                if (!confirm('本当に削除してよろしいですか？')) {
+                  _context3.next = 5;
+                  break;
+                }
+
+                _context3.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/blogs/".concat(_this3.id));
+
+              case 3:
+                _context3.next = 5;
+                return _this3.$router.push('/');
+
+              case 5:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
     }
   },
   watch: {
     $route: {
       handler: function handler() {
-        var _this3 = this;
+        var _this4 = this;
 
-        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
             while (1) {
-              switch (_context3.prev = _context3.next) {
+              switch (_context4.prev = _context4.next) {
                 case 0:
-                  _context3.next = 2;
-                  return _this3.fetchBlog();
+                  _context4.next = 2;
+                  return _this4.fetchBlog();
 
                 case 2:
                 case "end":
-                  return _context3.stop();
+                  return _context4.stop();
               }
             }
-          }, _callee3);
+          }, _callee4);
         }))();
       },
       immediate: true
@@ -5036,93 +5069,112 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "v-card",
-    {
-      staticClass: "mx-auto",
-      attrs: {
-        tile: _vm.$vuetify.breakpoint.sm || _vm.$vuetify.breakpoint.xs,
-        flat: "",
-        "max-width": "640"
-      }
-    },
-    [
-      _c("v-card-title", { staticClass: "text-center pa-8" }, [
-        _c("h3", [_vm._v("更新画面")])
-      ]),
-      _vm._v(" "),
-      _c("v-divider"),
-      _vm._v(" "),
-      _c("div", { staticClass: "pt-6" }, [
-        _c(
-          "div",
-          [
-            _c("v-text-field", {
-              staticClass: "mb-2",
-              attrs: {
-                dense: "",
-                height: "48px",
-                outlined: "",
-                label: "タイトル"
-              },
-              model: {
-                value: _vm.title,
-                callback: function($$v) {
-                  _vm.title = $$v
+  return _vm.blog
+    ? _c(
+        "v-card",
+        {
+          staticClass: "mx-auto",
+          attrs: {
+            tile: _vm.$vuetify.breakpoint.sm || _vm.$vuetify.breakpoint.xs,
+            flat: "",
+            "max-width": "640"
+          }
+        },
+        [
+          _c("v-card-title", { staticClass: "text-center pa-8" }, [
+            _c("h3", [_vm._v("更新画面")])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "text-right" },
+            [
+              _c(
+                "v-btn",
+                {
+                  staticClass: "font-weight-bold mb-3",
+                  attrs: { color: "error" },
+                  on: { click: _vm.destroy }
                 },
-                expression: "title"
-              }
-            }),
-            _vm._v(" "),
-            _c("v-textarea", {
-              attrs: {
-                label: "本文",
-                dense: "",
-                outlined: "",
-                height: "150px"
-              },
-              model: {
-                value: _vm.body,
-                callback: function($$v) {
-                  _vm.body = $$v
-                },
-                expression: "body"
-              }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "pb-8" },
-          [
+                [_vm._v("\n      削除する\n    ")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _c("div", { staticClass: "pt-6" }, [
             _c(
-              "v-btn",
-              {
-                staticClass: "font-weight-bold",
-                attrs: {
-                  color: "primary",
-                  depressed: "",
-                  height: "48px",
-                  tile: ""
-                },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    return _vm.update($event)
+              "div",
+              [
+                _c("v-text-field", {
+                  staticClass: "mb-2",
+                  attrs: {
+                    dense: "",
+                    height: "48px",
+                    outlined: "",
+                    label: "タイトル"
+                  },
+                  model: {
+                    value: _vm.title,
+                    callback: function($$v) {
+                      _vm.title = $$v
+                    },
+                    expression: "title"
                   }
-                }
-              },
-              [_vm._v("\n        更新する\n      ")]
+                }),
+                _vm._v(" "),
+                _c("v-textarea", {
+                  attrs: {
+                    label: "本文",
+                    dense: "",
+                    outlined: "",
+                    height: "150px"
+                  },
+                  model: {
+                    value: _vm.body,
+                    callback: function($$v) {
+                      _vm.body = $$v
+                    },
+                    expression: "body"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "pb-8" },
+              [
+                _c(
+                  "v-btn",
+                  {
+                    staticClass: "font-weight-bold",
+                    attrs: {
+                      color: "primary",
+                      depressed: "",
+                      height: "48px",
+                      tile: ""
+                    },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.update($event)
+                      }
+                    }
+                  },
+                  [_vm._v("\n        更新する\n      ")]
+                )
+              ],
+              1
             )
-          ],
-          1
-        )
-      ])
-    ],
-    1
-  )
+          ])
+        ],
+        1
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true

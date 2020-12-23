@@ -4,10 +4,20 @@
     class="mx-auto"
     flat
     max-width="640"
+    v-if="blog"
   >
     <v-card-title class="text-center pa-8">
       <h3>更新画面</h3>
     </v-card-title>
+    <div class="text-right">
+      <v-btn
+        color="error"
+        class="font-weight-bold mb-3"
+        @click="destroy"
+      >
+        削除する
+      </v-btn>
+    </div>
     <v-divider />
     <div class="pt-6">
       <div>
@@ -71,7 +81,7 @@ export default {
       this.blog = response.data.data
 
       if(this.blog.user.id !== this.$store.getters['auth/id']) {
-        await this.$router.push('/')
+        this.$router.push('/')
       }
       this.title = this.blog.title
       this.body = this.blog.body
@@ -83,6 +93,13 @@ export default {
 
       await axios.post(`/api/blogs/${this.id}`, this.blog);
       this.$router.push(`/blogs/${this.id}`);
+    },
+
+    async destroy() {
+      if(confirm('本当に削除してよろしいですか？')) {
+        await axios.post(`/api/blogs/${this.id}`)
+        await this.$router.push('/');
+      }
     }
   },
 

@@ -29,3 +29,4 @@ Route::get('blogs', 'BlogController@index');
 Route::get('blogs/{id}', 'BlogController@show');
 Route::post('blogs', 'BlogController@store');
 Route::post('blogs/{id}', 'BlogController@update');
+Route::post('blogs/{id}', 'BlogController@destory');
