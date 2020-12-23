@@ -2872,6 +2872,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ShowBlog",
@@ -5932,15 +5941,30 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c(
-                      "div",
-                      { staticClass: "mr-3 pb-2 text--disabled text-right" },
+                      "v-row",
+                      {
+                        staticClass: "mr-3 pb-2 text--disabled text-right",
+                        attrs: { align: "center", justify: "end" }
+                      },
                       [
-                        _vm._v(
-                          "\n            " +
-                            _vm._s(comment.user.nickname) +
-                            "\n          "
+                        _c("div", { staticClass: "mr-3" }, [
+                          _vm._v(
+                            "\n          " +
+                              _vm._s(comment.user.nickname) +
+                              "\n        "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "mr-1 text-decoration-none",
+                            attrs: { to: "/" }
+                          },
+                          [_vm._v("\n          編集\n        ")]
                         )
-                      ]
+                      ],
+                      1
                     )
                   ],
                   1

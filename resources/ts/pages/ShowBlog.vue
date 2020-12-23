@@ -31,9 +31,18 @@
         <v-card-text>
           {{ comment.text }}
         </v-card-text>
-            <div class="mr-3 pb-2 text--disabled text-right">
-              {{ comment.user.nickname }}
-            </div>
+        <v-row
+          class="mr-3 pb-2 text--disabled text-right"
+          align="center"
+          justify="end"
+        >
+          <div class="mr-3">
+            {{ comment.user.nickname }}
+          </div>
+          <router-link to="/" class="mr-1 text-decoration-none">
+            編集
+          </router-link>
+        </v-row>
       </v-card>
     </div>
   </div>

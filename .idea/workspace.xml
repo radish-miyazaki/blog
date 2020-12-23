@@ -3,13 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d0105eeb-60ec-46f1-bc55-9775ee6a2808" name="デフォルト変更リスト" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Comment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BlogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BlogController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/BlogResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/BlogResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/ts/pages/ShowBlog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ts/pages/ShowBlog.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,7 +162,7 @@
       <workItem from="1608035061895" duration="6482000" />
       <workItem from="1608105997444" duration="1282000" />
       <workItem from="1608610700698" duration="16348000" />
-      <workItem from="1608689490531" duration="25079000" />
+      <workItem from="1608689490531" duration="25433000" />
     </task>
     <servers />
   </component>
