@@ -2881,6 +2881,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ShowBlog",
@@ -2894,8 +2912,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       blog: null,
       isAuthor: false,
-      comments: null
+      comments: null,
+      commentContent: ''
     };
+  },
+  computed: {
+    isLogin: function isLogin() {
+      return this.$store.getters['auth/check'];
+    }
   },
   methods: {
     fetchBlog: function fetchBlog() {
@@ -2923,27 +2947,51 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    postComment: function postComment() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/blogs/".concat(_this2.id, "/comments"), {
+                  text: _this2.commentContent
+                });
+
+              case 2:
+                _this2.commentContent = '';
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     }
   },
   watch: {
     $route: {
       handler: function handler() {
-        var _this2 = this;
+        var _this3 = this;
 
-        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
             while (1) {
-              switch (_context2.prev = _context2.next) {
+              switch (_context3.prev = _context3.next) {
                 case 0:
-                  _context2.next = 2;
-                  return _this2.fetchBlog();
+                  _context3.next = 2;
+                  return _this3.fetchBlog();
 
                 case 2:
                 case "end":
-                  return _context2.stop();
+                  return _context3.stop();
               }
             }
-          }, _callee2);
+          }, _callee3);
         }))();
       },
       immediate: true
@@ -5866,102 +5914,29 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "mx-auto maxWidth",
-      attrs: { tile: _vm.$vuetify.breakpoint.sm || _vm.$vuetify.breakpoint.xs }
-    },
-    [
-      _c("v-card", { attrs: { flat: "" } }, [
-        _vm.isAuthor
-          ? _c(
-              "div",
-              { staticClass: "text-right pt-3" },
-              [
-                _c(
-                  "v-btn",
-                  { attrs: { color: "primary" } },
+  return _vm.blog
+    ? _c(
+        "div",
+        { staticClass: "mx-auto maxWidth" },
+        [
+          _c("v-card", { attrs: { flat: "" } }, [
+            _vm.isAuthor
+              ? _c(
+                  "div",
+                  { staticClass: "text-right pt-3" },
                   [
                     _c(
-                      "router-link",
-                      {
-                        staticClass:
-                          "font-weight-bold white--text text-decoration-none",
-                        attrs: { to: "/blogs/" + this.blog.id + "/edit" }
-                      },
-                      [_vm._v("\n          編集する\n        ")]
-                    )
-                  ],
-                  1
-                )
-              ],
-              1
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.blog
-          ? _c(
-              "div",
-              [
-                _c("v-card-title", { staticClass: "text-center pa-8" }, [
-                  _c("h3", [_vm._v(_vm._s(_vm.blog.title))])
-                ]),
-                _vm._v(" "),
-                _c("v-divider"),
-                _vm._v(" "),
-                _c("div", { staticClass: "py-6 body-1" }, [
-                  _vm._v("\n        " + _vm._s(_vm.blog.body) + "\n      ")
-                ]),
-                _vm._v(" "),
-                _c("v-divider")
-              ],
-              1
-            )
-          : _vm._e()
-      ]),
-      _vm._v(" "),
-      _vm.comments
-        ? _c(
-            "div",
-            [
-              _c("h3", { staticClass: "mt-3" }, [_vm._v("コメント")]),
-              _vm._v(" "),
-              _vm._l(_vm.comments, function(comment, i) {
-                return _c(
-                  "v-card",
-                  {
-                    key: i,
-                    staticClass: "mt-4",
-                    attrs: { flat: "", color: "blue-grey lighten-5" }
-                  },
-                  [
-                    _c("v-card-text", [
-                      _vm._v("\n        " + _vm._s(comment.text) + "\n      ")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "v-row",
-                      {
-                        staticClass: "mr-3 pb-2 text--disabled text-right",
-                        attrs: { align: "center", justify: "end" }
-                      },
+                      "v-btn",
+                      { attrs: { color: "primary" } },
                       [
-                        _c("div", { staticClass: "mr-3" }, [
-                          _vm._v(
-                            "\n          " +
-                              _vm._s(comment.user.nickname) +
-                              "\n        "
-                          )
-                        ]),
-                        _vm._v(" "),
                         _c(
                           "router-link",
                           {
-                            staticClass: "mr-1 text-decoration-none",
-                            attrs: { to: "/" }
+                            staticClass:
+                              "font-weight-bold white--text text-decoration-none",
+                            attrs: { to: "/blogs/" + this.blog.id + "/edit" }
                           },
-                          [_vm._v("\n          編集\n        ")]
+                          [_vm._v("\n          編集する\n        ")]
                         )
                       ],
                       1
@@ -5969,14 +5944,128 @@ var render = function() {
                   ],
                   1
                 )
-              })
-            ],
-            2
-          )
-        : _vm._e()
-    ],
-    1
-  )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.blog
+              ? _c(
+                  "div",
+                  [
+                    _c("v-card-title", { staticClass: "text-center pa-8" }, [
+                      _c("h3", [_vm._v(_vm._s(_vm.blog.title))])
+                    ]),
+                    _vm._v(" "),
+                    _c("v-divider"),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "py-6 body-1" }, [
+                      _vm._v("\n        " + _vm._s(_vm.blog.body) + "\n      ")
+                    ]),
+                    _vm._v(" "),
+                    _c("v-divider")
+                  ],
+                  1
+                )
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _vm.isLogin
+            ? _c(
+                "form",
+                { on: { submit: _vm.postComment } },
+                [
+                  _c("h3", { staticClass: "my-3" }, [
+                    _vm._v("コメントを投稿する")
+                  ]),
+                  _vm._v(" "),
+                  _c("v-textarea", {
+                    attrs: {
+                      label: "コメント",
+                      dense: "",
+                      outlined: "",
+                      height: "150px"
+                    },
+                    model: {
+                      value: _vm.commentContent,
+                      callback: function($$v) {
+                        _vm.commentContent = $$v
+                      },
+                      expression: "commentContent"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "mb-3 font-weight-bold white--text",
+                      attrs: { color: "teal", type: "submit" }
+                    },
+                    [_vm._v("\n      コメント投稿\n    ")]
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.comments
+            ? _c(
+                "div",
+                [
+                  _c("h3", { staticClass: "mt-3" }, [_vm._v("コメント")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.comments, function(comment, i) {
+                    return _c(
+                      "v-card",
+                      {
+                        key: i,
+                        staticClass: "mt-4",
+                        attrs: { flat: "", color: "blue-grey lighten-5" }
+                      },
+                      [
+                        _c("v-card-text", [
+                          _vm._v(
+                            "\n        " + _vm._s(comment.text) + "\n      "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-row",
+                          {
+                            staticClass: "mr-3 pb-2 text--disabled text-right",
+                            attrs: { align: "center", justify: "end" }
+                          },
+                          [
+                            _c("div", { staticClass: "mr-3" }, [
+                              _vm._v(
+                                "\n          " +
+                                  _vm._s(comment.user.nickname) +
+                                  "\n        "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "mr-1 text-decoration-none",
+                                attrs: { to: "/" }
+                              },
+                              [_vm._v("\n          編集\n        ")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  })
+                ],
+                2
+              )
+            : _vm._e()
+        ],
+        1
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true

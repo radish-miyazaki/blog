@@ -1,6 +1,6 @@
 <template>
   <div
-    :tile="$vuetify.breakpoint.sm || $vuetify.breakpoint.xs"
+    v-if="blog"
     class="mx-auto maxWidth">
     <v-card
       flat
@@ -25,6 +25,24 @@
         <v-divider></v-divider>
       </div>
     </v-card>
+    <v-divider></v-divider>
+    <form v-if="isLogin" @submit="postComment">
+      <h3 class="my-3">コメントを投稿する</h3>
+      <v-textarea
+        label="コメント"
+        dense
+        outlined
+        height="150px"
+        v-model="commentContent"
+      ></v-textarea>
+      <v-btn
+        color="teal"
+        class="mb-3 font-weight-bold white--text"
+        type="submit"
+      >
+        コメント投稿
+      </v-btn>
+    </form>
     <div v-if="comments">
       <h3 class="mt-3">コメント</h3>
       <v-card flat color="blue-grey lighten-5" v-for="(comment, i) in comments" :key="i" class="mt-4">
@@ -66,6 +84,13 @@ export default {
       blog: null,
       isAuthor: false,
       comments: null,
+      commentContent: '',
+    }
+  },
+
+  computed: {
+    isLogin() {
+      return this.$store.getters['auth/check']
     }
   },
 
@@ -76,7 +101,17 @@ export default {
       this.blog = response.data.data
       this.isAuthor = this.blog.user.id === this.$store.getters['auth/id']
       this.comments = this.blog.comments
+    },
+
+    async postComment() {
+      await axios.post(`/api/blogs/${this.id}/comments`, {
+        text: this.commentContent
+      })
+
+      this.commentContent = ''
     }
+
+
   },
 
   watch: {
