@@ -47,7 +47,9 @@
         <tbody>
         <tr v-for="(blog, i) in blogs" :key="i">
           <td>
-            <router-link class="text-decoration-none white--text font-weight-bold" :to="`/blogs/${blog.id}`">
+            <router-link
+              class="text-decoration-none white--text font-weight-bold"
+              :to="`/blogs/${blog.id}`">
               {{ blog.title }}
             </router-link>
           </td>

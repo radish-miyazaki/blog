@@ -4,10 +4,10 @@
     class="mx-auto"
     flat
     max-width="640"
-    v-if="blog"
+    v-if="comment"
   >
     <v-card-title class="text-center pa-8">
-      <h3>更新画面</h3>
+      <h3>コメント編集画面</h3>
     </v-card-title>
     <div class="text-right">
       <v-btn
@@ -21,22 +21,13 @@
     <v-divider />
     <div class="pt-6">
       <div>
-        <v-text-field
-          dense
-          height="48px"
-          outlined
-          class="mb-2"
-          label="タイトル"
-          v-model="title"
-        ></v-text-field>
         <v-textarea
-          label="本文"
+          label="コメント"
           dense
           outlined
           height="150px"
-          v-model="body"
+          v-model="text"
         ></v-textarea>
-
       </div>
       <div class="pb-8">
         <v-btn
@@ -55,16 +46,15 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios';
 
 export default {
-  name: "EditBlog",
+  name: "EditComment",
 
   data() {
     return {
-      blog: null,
-      title: '',
-      body: ''
+      comment: null,
+      text: '',
     }
   },
 
@@ -76,29 +66,25 @@ export default {
   },
 
   methods: {
-    async fetchBlog() {
-      const response = await axios.get(`/api/blogs/${this.id}`)
-      this.blog = response.data.data
-
-      if(this.blog.user.id !== this.$store.getters['auth/id']) {
-        await this.$router.push('/')
+    async fetchComment() {
+      const response = await axios.get(`/api/comments/${this.id}`)
+      this.comment = response.data
+      if(this.comment.user.id !== this.$store.getters['auth/id']) {
+        await this.$router.push('/') // 一つ前の画面に戻す
       }
-      this.title = this.blog.title
-      this.body = this.blog.body
+      this.text = this.comment.text
     },
 
     async update() {
-      this.blog.title = this.title;
-      this.blog.body = this.body;
-
-      await axios.post(`/api/blogs/${this.id}/update`, this.blog);
-      this.$router.push(`/blogs/${this.id}`);
+      this.comment.text = this.text
+      await axios.post(`api/comments/${this.id}/update`, this.comment);
+      this.$router.go(-1);
     },
 
     async destroy() {
       if(confirm('本当に削除してよろしいですか？')) {
-        await axios.post(`/api/blogs/${this.id}/destroy`);
-        await this.$router.push('/');
+        await axios.post(`api/comments/${this.id}/destroy`);
+        this.$router.go(-1);
       }
     }
   },
@@ -106,11 +92,13 @@ export default {
   watch: {
     $route: {
       async handler() {
-        await this.fetchBlog()
+        await this.fetchComment()
       },
       immediate: true
     }
   }
+
+
 }
 </script>
 

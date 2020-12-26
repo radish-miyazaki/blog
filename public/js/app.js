@@ -2224,14 +2224,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 response = _context.sent;
                 _this.blog = response.data.data;
 
-                if (_this.blog.user.id !== _this.$store.getters['auth/id']) {
-                  _this.$router.push('/');
+                if (!(_this.blog.user.id !== _this.$store.getters['auth/id'])) {
+                  _context.next = 7;
+                  break;
                 }
 
+                _context.next = 7;
+                return _this.$router.push('/');
+
+              case 7:
                 _this.title = _this.blog.title;
                 _this.body = _this.blog.body;
 
-              case 7:
+              case 9:
               case "end":
                 return _context.stop();
             }
@@ -2250,7 +2255,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this2.blog.title = _this2.title;
                 _this2.blog.body = _this2.body;
                 _context2.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/blogs/".concat(_this2.id), _this2.blog);
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/blogs/".concat(_this2.id, "/update"), _this2.blog);
 
               case 4:
                 _this2.$router.push("/blogs/".concat(_this2.id));
@@ -2277,7 +2282,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _context3.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/blogs/".concat(_this3.id));
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/blogs/".concat(_this3.id, "/destroy"));
 
               case 3:
                 _context3.next = 5;
@@ -2320,6 +2325,202 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/ts/pages/EditComment.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/ts/pages/EditComment.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "EditComment",
+  data: function data() {
+    return {
+      comment: null,
+      text: ''
+    };
+  },
+  props: {
+    id: {
+      type: String,
+      required: true
+    }
+  },
+  methods: {
+    fetchComment: function fetchComment() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/comments/".concat(_this.id));
+
+              case 2:
+                response = _context.sent;
+                _this.comment = response.data;
+
+                if (!(_this.comment.user.id !== _this.$store.getters['auth/id'])) {
+                  _context.next = 7;
+                  break;
+                }
+
+                _context.next = 7;
+                return _this.$router.push('/');
+
+              case 7:
+                _this.text = _this.comment.text;
+
+              case 8:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    update: function update() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _this2.comment.text = _this2.text;
+                _context2.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/comments/".concat(_this2.id, "/update"), _this2.comment);
+
+              case 3:
+                _this2.$router.go(-1);
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    destroy: function destroy() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                if (!confirm('本当に削除してよろしいですか？')) {
+                  _context3.next = 4;
+                  break;
+                }
+
+                _context3.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/comments/".concat(_this3.id, "/destroy"));
+
+              case 3:
+                _this3.$router.go(-1);
+
+              case 4:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    }
+  },
+  watch: {
+    $route: {
+      handler: function handler() {
+        var _this4 = this;
+
+        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+            while (1) {
+              switch (_context4.prev = _context4.next) {
+                case 0:
+                  _context4.next = 2;
+                  return _this4.fetchComment();
+
+                case 2:
+                case "end":
+                  return _context4.stop();
+              }
+            }
+          }, _callee4);
+        }))();
+      },
+      immediate: true
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/ts/pages/Index.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/ts/pages/Index.vue?vue&type=script&lang=js& ***!
@@ -2331,6 +2532,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
 //
 //
 //
@@ -5291,12 +5494,114 @@ var render = function() {
                       height: "48px",
                       tile: ""
                     },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        return _vm.update($event)
-                      }
-                    }
+                    on: { click: _vm.update }
+                  },
+                  [_vm._v("\n        更新する\n      ")]
+                )
+              ],
+              1
+            )
+          ])
+        ],
+        1
+      )
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/ts/pages/EditComment.vue?vue&type=template&id=d622979c&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/ts/pages/EditComment.vue?vue&type=template&id=d622979c&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.comment
+    ? _c(
+        "v-card",
+        {
+          staticClass: "mx-auto",
+          attrs: {
+            tile: _vm.$vuetify.breakpoint.sm || _vm.$vuetify.breakpoint.xs,
+            flat: "",
+            "max-width": "640"
+          }
+        },
+        [
+          _c("v-card-title", { staticClass: "text-center pa-8" }, [
+            _c("h3", [_vm._v("コメント編集画面")])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "text-right" },
+            [
+              _c(
+                "v-btn",
+                {
+                  staticClass: "font-weight-bold mb-3",
+                  attrs: { color: "error" },
+                  on: { click: _vm.destroy }
+                },
+                [_vm._v("\n      削除する\n    ")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _c("div", { staticClass: "pt-6" }, [
+            _c(
+              "div",
+              [
+                _c("v-textarea", {
+                  attrs: {
+                    label: "コメント",
+                    dense: "",
+                    outlined: "",
+                    height: "150px"
+                  },
+                  model: {
+                    value: _vm.text,
+                    callback: function($$v) {
+                      _vm.text = $$v
+                    },
+                    expression: "text"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "pb-8" },
+              [
+                _c(
+                  "v-btn",
+                  {
+                    staticClass: "font-weight-bold",
+                    attrs: {
+                      color: "primary",
+                      depressed: "",
+                      height: "48px",
+                      tile: ""
+                    },
+                    on: { click: _vm.update }
                   },
                   [_vm._v("\n        更新する\n      ")]
                 )
@@ -6061,7 +6366,7 @@ var render = function() {
                                   "router-link",
                                   {
                                     staticClass: "mr-1 text-decoration-none",
-                                    attrs: { to: "/" }
+                                    attrs: { to: "/comments/" + comment.id }
                                   },
                                   [_vm._v("\n          編集\n        ")]
                                 )
@@ -66937,6 +67242,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/ts/pages/EditComment.vue":
+/*!********************************************!*\
+  !*** ./resources/ts/pages/EditComment.vue ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EditComment_vue_vue_type_template_id_d622979c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditComment.vue?vue&type=template&id=d622979c&scoped=true& */ "./resources/ts/pages/EditComment.vue?vue&type=template&id=d622979c&scoped=true&");
+/* harmony import */ var _EditComment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditComment.vue?vue&type=script&lang=js& */ "./resources/ts/pages/EditComment.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EditComment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditComment_vue_vue_type_template_id_d622979c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EditComment_vue_vue_type_template_id_d622979c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "d622979c",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/ts/pages/EditComment.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/ts/pages/EditComment.vue?vue&type=script&lang=js&":
+/*!*********************************************************************!*\
+  !*** ./resources/ts/pages/EditComment.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditComment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./EditComment.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/ts/pages/EditComment.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditComment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/ts/pages/EditComment.vue?vue&type=template&id=d622979c&scoped=true&":
+/*!***************************************************************************************!*\
+  !*** ./resources/ts/pages/EditComment.vue?vue&type=template&id=d622979c&scoped=true& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditComment_vue_vue_type_template_id_d622979c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./EditComment.vue?vue&type=template&id=d622979c&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/ts/pages/EditComment.vue?vue&type=template&id=d622979c&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditComment_vue_vue_type_template_id_d622979c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditComment_vue_vue_type_template_id_d622979c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/ts/pages/Index.vue":
 /*!**************************************!*\
   !*** ./resources/ts/pages/Index.vue ***!
@@ -67318,6 +67692,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_PostBlog_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/PostBlog.vue */ "./resources/ts/pages/PostBlog.vue");
 /* harmony import */ var _pages_ShowBlog_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/ShowBlog.vue */ "./resources/ts/pages/ShowBlog.vue");
 /* harmony import */ var _pages_EditBlog_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/EditBlog.vue */ "./resources/ts/pages/EditBlog.vue");
+/* harmony import */ var _pages_EditComment_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/EditComment.vue */ "./resources/ts/pages/EditComment.vue");
 
 
 
@@ -67328,11 +67703,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 // VueRouterプラグインを使用する
 // これによって<router-link />コンポーネントなどを使うことができる
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 // パスとコンポーネントのマッピング
-var routes = [{ path: '', component: _pages_Index_vue__WEBPACK_IMPORTED_MODULE_4__["default"] }, {
+var routes = [
+    {
+        path: '',
+        component: _pages_Index_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    },
+    {
         path: '/login',
         component: _pages_Login_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
         beforeEnter: function (_, _2, next) {
@@ -67355,7 +67736,8 @@ var routes = [{ path: '', component: _pages_Index_vue__WEBPACK_IMPORTED_MODULE_4
                 next();
             }
         },
-    }, {
+    },
+    {
         path: '/blogs/:id',
         component: _pages_ShowBlog_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
         props: true,
@@ -67364,7 +67746,8 @@ var routes = [{ path: '', component: _pages_Index_vue__WEBPACK_IMPORTED_MODULE_4
         path: '/blogs/:id/edit',
         component: _pages_EditBlog_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
         props: true
-    }, {
+    },
+    {
         path: '/blogs/post',
         component: _pages_PostBlog_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
         beforeEnter: function (_, _2, next) {
@@ -67376,7 +67759,12 @@ var routes = [{ path: '', component: _pages_Index_vue__WEBPACK_IMPORTED_MODULE_4
                 next();
             }
         }
-    }
+    },
+    {
+        path: '/comments/:id',
+        component: _pages_EditComment_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
+        props: true,
+    },
 ];
 // VueRouterインスタンスを作成する
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({

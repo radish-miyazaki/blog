@@ -9,13 +9,18 @@ import Register from './pages/Register.vue';
 import PostBlog from './pages/PostBlog.vue';
 import ShowBlog from './pages/ShowBlog.vue';
 import EditBlog from './pages/EditBlog.vue';
+import EditComment from './pages/EditComment.vue';
 
 // VueRouterプラグインを使用する
 // これによって<router-link />コンポーネントなどを使うことができる
 Vue.use(VueRouter);
 
 // パスとコンポーネントのマッピング
-const routes = [{ path: '', component: Index },
+const routes = [
+  {
+    path: '',
+    component: Index
+  },
   {
     path: '/login',
     component: Login,
@@ -59,7 +64,12 @@ const routes = [{ path: '', component: Index },
         next()
       }
     }
-  }
+  },
+  {
+    path: '/comments/:id',
+    component: EditComment,
+    props: true,
+  },
 ];
 
 // VueRouterインスタンスを作成する

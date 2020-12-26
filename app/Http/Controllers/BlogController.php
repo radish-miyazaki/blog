@@ -47,7 +47,7 @@ class BlogController extends Controller
         return redirect('api/blogs');
     }
 
-    public function destory($id)
+    public function destroy($id)
     {
         Blog::destroy($id);
 

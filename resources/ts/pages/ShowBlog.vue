@@ -65,7 +65,7 @@
             {{ comment.user.nickname }}
           </div>
           <router-link
-            to="/"
+            :to="`/comments/${comment.id}`"
             class="mr-1 text-decoration-none"
             v-if="isCommenter(comment)">
             編集

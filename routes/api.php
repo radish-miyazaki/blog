@@ -29,9 +29,12 @@ Route::get('/user', function () {
 Route::get('blogs', 'BlogController@index');
 Route::get('blogs/{id}', 'BlogController@show');
 Route::post('blogs', 'BlogController@store');
-Route::post('blogs/{id}', 'BlogController@update');
-Route::post('blogs/{id}', 'BlogController@destory');
+Route::post('blogs/{id}/update', 'BlogController@update');
+Route::post('blogs/{id}/destroy', 'BlogController@destroy');
 
 // コメント
+Route::get('comments/{id}', 'CommentController@show');
+Route::post('comments/{id}/update', 'CommentController@update');
+Route::post('comments/{id}/destroy', 'CommentController@destroy');
 Route::post('blogs/{blog}/comments', 'CommentController@store');
 
