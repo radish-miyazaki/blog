@@ -23,7 +23,7 @@ const actions = {
    * @param data
    */
   async register({ commit }: any, data: any) {
-    const response = await axios.post('api/register', data)
+    const response = await axios.post('/api/register', data)
     commit('setUser', response.data)
   },
 
@@ -33,7 +33,7 @@ const actions = {
    * @param data
    */
   async login({ commit }: any, data: any) {
-    const response = await axios.post('api/login', data)
+    const response = await axios.post('/api/login', data)
     commit('setUser', response.data)
   },
 
@@ -42,7 +42,7 @@ const actions = {
    * @param commit
    */
   async logout({ commit }: any) {
-    await axios.post('api/logout')
+    await axios.post('/api/logout')
     commit('setUser', null)
   },
 

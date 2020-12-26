@@ -77,13 +77,13 @@ export default {
 
     async update() {
       this.comment.text = this.text
-      await axios.post(`api/comments/${this.id}/update`, this.comment);
+      await axios.post(`/api/comments/${this.id}/update`, this.comment);
       this.$router.go(-1);
     },
 
     async destroy() {
       if(confirm('本当に削除してよろしいですか？')) {
-        await axios.post(`api/comments/${this.id}/destroy`);
+        await axios.post(`/api/comments/${this.id}/destroy`);
         this.$router.go(-1);
       }
     }

@@ -21,9 +21,17 @@ class CreateCommentsTable extends Migration
             $table->timestamps();
 
             // ユーザテーブルのとの紐付け
-            $table->foreign('user_id')->references('id')->on('users');
+            $table
+                ->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
             // ブログテーブルのとの紐付け
-            $table->foreign('blog_id')->references('id')->on('blogs');
+            $table
+                ->foreign('blog_id')
+                ->references('id')
+                ->on('blogs')
+                ->onDelete('cascade');
         });
     }
 

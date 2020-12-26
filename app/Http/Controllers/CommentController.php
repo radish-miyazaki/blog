@@ -36,13 +36,13 @@ class CommentController extends Controller
 
         $comment->update();
 
-        return redirect('api/comments');
+        return $comment;
     }
 
     public function destroy($id)
     {
         Comment::destroy($id);
 
-        return redirect('api/comments');
+        return null;
     }
 }

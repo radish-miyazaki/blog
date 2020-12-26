@@ -21,7 +21,11 @@ class CreateBlogsTable extends Migration
             $table->timestamps();
 
             // ユーザテーブルと紐付け
-            $table->foreign('user_id')->references('id')->on('users');
+            $table
+                ->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 

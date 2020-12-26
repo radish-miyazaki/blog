@@ -2452,7 +2452,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _this2.comment.text = _this2.text;
                 _context2.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/comments/".concat(_this2.id, "/update"), _this2.comment);
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/comments/".concat(_this2.id, "/update"), _this2.comment);
 
               case 3:
                 _this2.$router.go(-1);
@@ -2479,7 +2479,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 _context3.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("api/comments/".concat(_this3.id, "/destroy"));
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/comments/".concat(_this3.id, "/destroy"));
 
               case 3:
                 _this3.$router.go(-1);
@@ -67851,7 +67851,7 @@ var actions = {
             var response;
             return __generator(this, function (_b) {
                 switch (_b.label) {
-                    case 0: return [4 /*yield*/, axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('api/register', data)];
+                    case 0: return [4 /*yield*/, axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/register', data)];
                     case 1:
                         response = _b.sent();
                         commit('setUser', response.data);
@@ -67871,7 +67871,7 @@ var actions = {
             var response;
             return __generator(this, function (_b) {
                 switch (_b.label) {
-                    case 0: return [4 /*yield*/, axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('api/login', data)];
+                    case 0: return [4 /*yield*/, axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/login', data)];
                     case 1:
                         response = _b.sent();
                         commit('setUser', response.data);
@@ -67889,7 +67889,7 @@ var actions = {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_b) {
                 switch (_b.label) {
-                    case 0: return [4 /*yield*/, axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('api/logout')];
+                    case 0: return [4 /*yield*/, axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/logout')];
                     case 1:
                         _b.sent();
                         commit('setUser', null);
