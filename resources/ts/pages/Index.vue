@@ -11,6 +11,7 @@
         hide-details
         prepend-inner-icon="mdi-magnify"
         label="検索する"
+        v-model="keyword"
       ></v-text-field>
       <template v-if="isLogin">
         <v-spacer></v-spacer>
@@ -32,42 +33,47 @@
     </v-toolbar>
 
     <v-divider></v-divider>
-    <v-simple-table dark class="my-3">
-      <template v-slot:default>
-        <thead>
-        <tr>
-          <th class="text-left">
-            タイトル
-          </th>
-          <th class="text-left">
-            ニックネーム
-          </th>
-          <th class="text-left">
-            タグ
-          </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="(blog, i) in blogs" :key="i">
-          <td>
-            <router-link
-              class="text-decoration-none white--text font-weight-bold"
-              :to="`/blogs/${blog.id}`">
-              {{ blog.title }}
-            </router-link>
-          </td>
-          <td>{{ blog.user.nickname }}</td>
-          <td>*</td>
-        </tr>
-        </tbody>
-      </template>
-    </v-simple-table>
-    <v-pagination
-      v-model="page"
-      :length="lastPage"
-      circle
-      @input="getBlogs"
-    ></v-pagination>
+    <div v-if="blogs">
+      <v-simple-table dark class="my-3">
+        <template v-slot:default>
+          <thead>
+          <tr>
+            <th class="text-left">
+              タイトル
+            </th>
+            <th class="text-left">
+              ニックネーム
+            </th>
+            <th class="text-left">
+              タグ
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="(blog, i) in blogs" :key="i">
+            <td>
+              <router-link
+                class="text-decoration-none white--text font-weight-bold"
+                :to="`/blogs/${blog.id}`">
+                {{ blog.title }}
+              </router-link>
+            </td>
+            <td>{{ blog.user.nickname }}</td>
+            <td>*</td>
+          </tr>
+          </tbody>
+        </template>
+      </v-simple-table>
+      <v-pagination
+        v-model="page"
+        :length="lastPage"
+        circle
+        @input="getBlogs"
+      ></v-pagination>
+    </div>
+    <div v-else class="text-center pt-5">
+      投稿はありません。
+    </div>
   </div>
 </template>
 
@@ -78,9 +84,10 @@ export default {
   name: "Index",
   data() {
     return {
-      blogs: [],
+      blogs: null,
       page: 1,
       lastPage: 1,
+      keyword: "",
     }
   },
 
@@ -98,6 +105,24 @@ export default {
         this.blogs = res.data.data
         this.lastPage = res.data.meta.last_page
       }).catch(e => console.log(e))
+    },
+
+    search() {
+      if(!!this.keyword) {
+        axios.get('/api/blogs?keyword=' + this.keyword)
+          .then(res => {
+            this.blogs = res.data.data;
+            this.lastPage = res.data.meta.last_page
+          })
+          .catch(e => console.log(e))
+      } else {
+        this.getBlogs(1);
+      }
+    }
+  },
+  watch: {
+    keyword() {
+      this.search()
     }
   },
 

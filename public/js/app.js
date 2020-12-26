@@ -2605,14 +2605,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Index",
   data: function data() {
     return {
-      blogs: [],
+      blogs: null,
       page: 1,
-      lastPage: 1
+      lastPage: 1,
+      keyword: ""
     };
   },
   mounted: function mounted() {
@@ -2632,6 +2639,25 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (e) {
         return console.log(e);
       });
+    },
+    search: function search() {
+      var _this2 = this;
+
+      if (!!this.keyword) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/blogs?keyword=' + this.keyword).then(function (res) {
+          _this2.blogs = res.data.data;
+          _this2.lastPage = res.data.meta.last_page;
+        })["catch"](function (e) {
+          return console.log(e);
+        });
+      } else {
+        this.getBlogs(1);
+      }
+    }
+  },
+  watch: {
+    keyword: function keyword() {
+      this.search();
     }
   },
   computed: {
@@ -5658,6 +5684,13 @@ var render = function() {
               "hide-details": "",
               "prepend-inner-icon": "mdi-magnify",
               label: "検索する"
+            },
+            model: {
+              value: _vm.keyword,
+              callback: function($$v) {
+                _vm.keyword = $$v
+              },
+              expression: "keyword"
             }
           }),
           _vm._v(" "),
@@ -5697,81 +5730,96 @@ var render = function() {
       _vm._v(" "),
       _c("v-divider"),
       _vm._v(" "),
-      _c("v-simple-table", {
-        staticClass: "my-3",
-        attrs: { dark: "" },
-        scopedSlots: _vm._u([
-          {
-            key: "default",
-            fn: function() {
-              return [
-                _c("thead", [
-                  _c("tr", [
-                    _c("th", { staticClass: "text-left" }, [
-                      _vm._v("\n          タイトル\n        ")
-                    ]),
-                    _vm._v(" "),
-                    _c("th", { staticClass: "text-left" }, [
-                      _vm._v("\n          ニックネーム\n        ")
-                    ]),
-                    _vm._v(" "),
-                    _c("th", { staticClass: "text-left" }, [
-                      _vm._v("\n          タグ\n        ")
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "tbody",
-                  _vm._l(_vm.blogs, function(blog, i) {
-                    return _c("tr", { key: i }, [
-                      _c(
-                        "td",
-                        [
+      _vm.blogs
+        ? _c(
+            "div",
+            [
+              _c("v-simple-table", {
+                staticClass: "my-3",
+                attrs: { dark: "" },
+                scopedSlots: _vm._u(
+                  [
+                    {
+                      key: "default",
+                      fn: function() {
+                        return [
+                          _c("thead", [
+                            _c("tr", [
+                              _c("th", { staticClass: "text-left" }, [
+                                _vm._v("\n            タイトル\n          ")
+                              ]),
+                              _vm._v(" "),
+                              _c("th", { staticClass: "text-left" }, [
+                                _vm._v("\n            ニックネーム\n          ")
+                              ]),
+                              _vm._v(" "),
+                              _c("th", { staticClass: "text-left" }, [
+                                _vm._v("\n            タグ\n          ")
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
                           _c(
-                            "router-link",
-                            {
-                              staticClass:
-                                "text-decoration-none white--text font-weight-bold",
-                              attrs: { to: "/blogs/" + blog.id }
-                            },
-                            [
-                              _vm._v(
-                                "\n            " +
-                                  _vm._s(blog.title) +
-                                  "\n          "
-                              )
-                            ]
+                            "tbody",
+                            _vm._l(_vm.blogs, function(blog, i) {
+                              return _c("tr", { key: i }, [
+                                _c(
+                                  "td",
+                                  [
+                                    _c(
+                                      "router-link",
+                                      {
+                                        staticClass:
+                                          "text-decoration-none white--text font-weight-bold",
+                                        attrs: { to: "/blogs/" + blog.id }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n              " +
+                                            _vm._s(blog.title) +
+                                            "\n            "
+                                        )
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(blog.user.nickname))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v("*")])
+                              ])
+                            }),
+                            0
                           )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(blog.user.nickname))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("*")])
-                    ])
-                  }),
-                  0
+                        ]
+                      },
+                      proxy: true
+                    }
+                  ],
+                  null,
+                  false,
+                  119377617
                 )
-              ]
-            },
-            proxy: true
-          }
-        ])
-      }),
-      _vm._v(" "),
-      _c("v-pagination", {
-        attrs: { length: _vm.lastPage, circle: "" },
-        on: { input: _vm.getBlogs },
-        model: {
-          value: _vm.page,
-          callback: function($$v) {
-            _vm.page = $$v
-          },
-          expression: "page"
-        }
-      })
+              }),
+              _vm._v(" "),
+              _c("v-pagination", {
+                attrs: { length: _vm.lastPage, circle: "" },
+                on: { input: _vm.getBlogs },
+                model: {
+                  value: _vm.page,
+                  callback: function($$v) {
+                    _vm.page = $$v
+                  },
+                  expression: "page"
+                }
+              })
+            ],
+            1
+          )
+        : _c("div", { staticClass: "text-center pt-5" }, [
+            _vm._v("\n    投稿はありません。\n  ")
+          ])
     ],
     1
   )

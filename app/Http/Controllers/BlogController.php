@@ -10,7 +10,14 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $blogs = Blog::with('user')->paginate(10);
+        $blogs = Blog::orderBy('created_at', 'desc')
+            ->where(function ($query) {
+                if ($search = request('keyword')) {
+                    $query->where('title', 'LIKE', "%{$search}%")
+                        ->orWhere('body', 'LIKE', "%{$search}%");
+                }
+            })
+            ->paginate(10);
 
         return BlogResource::collection($blogs);
     }
