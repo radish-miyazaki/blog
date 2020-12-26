@@ -2602,6 +2602,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Index",
@@ -67714,6 +67717,19 @@ var routes = [
         component: _pages_Index_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
     },
     {
+        path: '/blogs/post',
+        component: _pages_PostBlog_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+        beforeEnter: function (_, _2, next) {
+            if (!_store__WEBPACK_IMPORTED_MODULE_2__["default"].getters['auth/check']) {
+                alert('先にログインしてください。');
+                next('/login');
+            }
+            else {
+                next();
+            }
+        }
+    },
+    {
         path: '/login',
         component: _pages_Login_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
         beforeEnter: function (_, _2, next) {
@@ -67746,19 +67762,6 @@ var routes = [
         path: '/blogs/:id/edit',
         component: _pages_EditBlog_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
         props: true
-    },
-    {
-        path: '/blogs/post',
-        component: _pages_PostBlog_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
-        beforeEnter: function (_, _2, next) {
-            if (!_store__WEBPACK_IMPORTED_MODULE_2__["default"].getters['auth/check']) {
-                alert('先にログインしてください。');
-                next('/login');
-            }
-            else {
-                next();
-            }
-        }
     },
     {
         path: '/comments/:id',

@@ -22,6 +22,18 @@ const routes = [
     component: Index
   },
   {
+    path: '/blogs/post',
+    component: PostBlog,
+    beforeEnter(_: any, _2: any, next: any) {
+      if(!store.getters['auth/check']) {
+        alert('先にログインしてください。')
+        next('/login')
+      } else {
+        next()
+      }
+    }
+  },
+  {
     path: '/login',
     component: Login,
     beforeEnter (_: any, _2: any, next: any) {
@@ -52,18 +64,6 @@ const routes = [
     path: '/blogs/:id/edit',
     component: EditBlog,
     props: true
-  },
-  {
-    path: '/blogs/post',
-    component: PostBlog,
-    beforeEnter(_: any, _2: any, next: any) {
-      if(!store.getters['auth/check']) {
-        alert('先にログインしてください。')
-        next('/login')
-      } else {
-        next()
-      }
-    }
   },
   {
     path: '/comments/:id',
