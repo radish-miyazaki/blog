@@ -2899,6 +2899,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ShowBlog",
@@ -2971,6 +2981,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee2);
       }))();
+    },
+    isCommenter: function isCommenter(comment) {
+      return comment.user_id === this.$store.getters['auth/id'];
     }
   },
   watch: {
@@ -6043,14 +6056,16 @@ var render = function() {
                               )
                             ]),
                             _vm._v(" "),
-                            _c(
-                              "router-link",
-                              {
-                                staticClass: "mr-1 text-decoration-none",
-                                attrs: { to: "/" }
-                              },
-                              [_vm._v("\n          編集\n        ")]
-                            )
+                            _vm.isCommenter(comment)
+                              ? _c(
+                                  "router-link",
+                                  {
+                                    staticClass: "mr-1 text-decoration-none",
+                                    attrs: { to: "/" }
+                                  },
+                                  [_vm._v("\n          編集\n        ")]
+                                )
+                              : _vm._e()
                           ],
                           1
                         )

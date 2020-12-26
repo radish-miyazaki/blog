@@ -9,7 +9,9 @@
         <v-btn
           color="primary"
         >
-          <router-link :to="`/blogs/${this.blog.id}/edit`" class="font-weight-bold white--text text-decoration-none">
+          <router-link
+            :to="`/blogs/${this.blog.id}/edit`"
+            class="font-weight-bold white--text text-decoration-none">
             編集する
           </router-link>
         </v-btn>
@@ -45,7 +47,12 @@
     </form>
     <div v-if="comments">
       <h3 class="mt-3">コメント</h3>
-      <v-card flat color="blue-grey lighten-5" v-for="(comment, i) in comments" :key="i" class="mt-4">
+      <v-card
+        flat
+        color="blue-grey lighten-5"
+        v-for="(comment, i) in comments"
+        :key="i"
+        class="mt-4">
         <v-card-text>
           {{ comment.text }}
         </v-card-text>
@@ -57,7 +64,10 @@
           <div class="mr-3">
             {{ comment.user.nickname }}
           </div>
-          <router-link to="/" class="mr-1 text-decoration-none">
+          <router-link
+            to="/"
+            class="mr-1 text-decoration-none"
+            v-if="isCommenter(comment)">
             編集
           </router-link>
         </v-row>
@@ -91,7 +101,7 @@ export default {
   computed: {
     isLogin() {
       return this.$store.getters['auth/check']
-    }
+    },
   },
 
   methods: {
@@ -109,9 +119,11 @@ export default {
       })
 
       this.commentContent = ''
+    },
+
+    isCommenter(comment) {
+      return comment.user_id === this.$store.getters['auth/id']
     }
-
-
   },
 
   watch: {
