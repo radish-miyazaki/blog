@@ -20,14 +20,14 @@ class CreatePostTagTable extends Migration
             $table->timestamps();
 
             $table
-                ->foreign('tag_id')
-                ->references('id')
-                ->on('tags')
-                ->onDelete('cascade');
-            $table
                 ->foreign('blog_id')
                 ->references('id')
                 ->on('blogs')
+                ->onDelete('cascade');
+            $table
+                ->foreign('tag_id')
+                ->references('id')
+                ->on('tags')
                 ->onDelete('cascade');
         });
     }
