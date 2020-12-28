@@ -2611,6 +2611,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Index",
@@ -5773,7 +5783,7 @@ var render = function() {
                                 _vm._v("\n            ニックネーム\n          ")
                               ]),
                               _vm._v(" "),
-                              _c("th", { staticClass: "text-left" }, [
+                              _c("th", [
                                 _vm._v("\n            タグ\n          ")
                               ])
                             ])
@@ -5782,7 +5792,7 @@ var render = function() {
                           _c(
                             "tbody",
                             _vm._l(_vm.blogs, function(blog, i) {
-                              return _c("tr", { key: i }, [
+                              return _c("tr", { key: "" + i }, [
                                 _c(
                                   "td",
                                   [
@@ -5807,7 +5817,31 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(blog.user.nickname))]),
                                 _vm._v(" "),
-                                _c("td", [_vm._v("*")])
+                                _c(
+                                  "td",
+                                  _vm._l(blog.tags, function(tag, j) {
+                                    return _c(
+                                      "v-chip",
+                                      {
+                                        key: "" + j,
+                                        staticClass: "ml-1",
+                                        attrs: {
+                                          small: "",
+                                          outlined: "",
+                                          color: "success"
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n              " +
+                                            _vm._s(tag.name) +
+                                            "\n            "
+                                        )
+                                      ]
+                                    )
+                                  }),
+                                  1
+                                )
                               ])
                             }),
                             0
@@ -5819,7 +5853,7 @@ var render = function() {
                   ],
                   null,
                   false,
-                  119377617
+                  2194607639
                 )
               }),
               _vm._v(" "),
@@ -6361,9 +6395,9 @@ var render = function() {
                       return _c(
                         "v-chip",
                         {
-                          key: "i",
+                          key: "" + i,
                           staticClass: "ml-1 mt-3",
-                          attrs: { color: "pink", "text-color": "white" }
+                          attrs: { color: "success", outlined: "" }
                         },
                         [
                           _c("v-icon", { attrs: { left: "" } }, [
@@ -6432,11 +6466,11 @@ var render = function() {
                 [
                   _c("h3", { staticClass: "mt-3" }, [_vm._v("コメント")]),
                   _vm._v(" "),
-                  _vm._l(_vm.comments, function(comment, i) {
+                  _vm._l(_vm.comments, function(comment, j) {
                     return _c(
                       "v-card",
                       {
-                        key: i,
+                        key: "" + j,
                         staticClass: "mt-4",
                         attrs: { flat: "", color: "blue-grey lighten-5" }
                       },

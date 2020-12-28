@@ -23,10 +23,10 @@
         <v-divider />
         <v-chip
           v-for="(tag, i) in blog.tags"
-          key="i"
+          :key="`${i}`"
           class="ml-1 mt-3"
-          color="pink"
-          text-color="white">
+          color="success"
+          outlined>
           <v-icon left>
             mdi-label
           </v-icon>
@@ -61,8 +61,8 @@
       <v-card
         flat
         color="blue-grey lighten-5"
-        v-for="(comment, i) in comments"
-        :key="i"
+        v-for="(comment, j) in comments"
+        :key="`${j}`"
         class="mt-4">
         <v-card-text>
           {{ comment.text }}

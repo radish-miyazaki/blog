@@ -44,13 +44,13 @@
             <th class="text-left">
               ニックネーム
             </th>
-            <th class="text-left">
+            <th>
               タグ
             </th>
           </tr>
           </thead>
           <tbody>
-          <tr v-for="(blog, i) in blogs" :key="i">
+          <tr v-for="(blog, i) in blogs" :key="`${i}`">
             <td>
               <router-link
                 class="text-decoration-none white--text font-weight-bold"
@@ -59,7 +59,17 @@
               </router-link>
             </td>
             <td>{{ blog.user.nickname }}</td>
-            <td>*</td>
+            <td>
+              <v-chip
+                small
+                v-for="(tag, j) in blog.tags"
+                :key="`${j}`"
+                class="ml-1"
+                outlined
+                color="success">
+                {{ tag.name }}
+              </v-chip>
+            </td>
           </tr>
           </tbody>
         </template>
