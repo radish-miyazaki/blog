@@ -21,6 +21,17 @@
           <h3>{{ blog.title }}</h3>
         </v-card-title>
         <v-divider />
+        <v-chip
+          v-for="(tag, i) in blog.tags"
+          key="i"
+          class="ml-1 mt-3"
+          color="pink"
+          text-color="white">
+          <v-icon left>
+            mdi-label
+          </v-icon>
+          {{ tag.name }}
+        </v-chip>
         <div class="py-6 body-1">
           {{ blog.body }}
         </div>

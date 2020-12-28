@@ -26,6 +26,14 @@
           height="150px"
           v-model="postForm.body"
         ></v-textarea>
+        <v-text-field
+          dense
+          height="48px"
+          outlined
+          class="mb-2"
+          label="タグ"
+          v-model="postForm.tags"
+        ></v-text-field>
 
       </div>
       <div class="pb-8">
@@ -56,6 +64,7 @@ export default {
         title: '',
         body: '',
         user_id: '',
+        tags: '',
       }
     }
   },

@@ -2842,6 +2842,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Blog",
@@ -2850,7 +2858,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       postForm: {
         title: '',
         body: '',
-        user_id: ''
+        user_id: '',
+        tags: ''
       }
     };
   },
@@ -3063,6 +3072,17 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6019,6 +6039,18 @@ var render = function() {
                 },
                 expression: "postForm.body"
               }
+            }),
+            _vm._v(" "),
+            _c("v-text-field", {
+              staticClass: "mb-2",
+              attrs: { dense: "", height: "48px", outlined: "", label: "タグ" },
+              model: {
+                value: _vm.postForm.tags,
+                callback: function($$v) {
+                  _vm.$set(_vm.postForm, "tags", $$v)
+                },
+                expression: "postForm.tags"
+              }
             })
           ],
           1
@@ -6325,13 +6357,31 @@ var render = function() {
                     _vm._v(" "),
                     _c("v-divider"),
                     _vm._v(" "),
+                    _vm._l(_vm.blog.tags, function(tag, i) {
+                      return _c(
+                        "v-chip",
+                        {
+                          key: "i",
+                          staticClass: "ml-1 mt-3",
+                          attrs: { color: "pink", "text-color": "white" }
+                        },
+                        [
+                          _c("v-icon", { attrs: { left: "" } }, [
+                            _vm._v("\n          mdi-label\n        ")
+                          ]),
+                          _vm._v("\n        " + _vm._s(tag.name) + "\n      ")
+                        ],
+                        1
+                      )
+                    }),
+                    _vm._v(" "),
                     _c("div", { staticClass: "py-6 body-1" }, [
                       _vm._v("\n        " + _vm._s(_vm.blog.body) + "\n      ")
                     ]),
                     _vm._v(" "),
                     _c("v-divider")
                   ],
-                  1
+                  2
                 )
               : _vm._e()
           ]),

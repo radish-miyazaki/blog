@@ -8,7 +8,7 @@ class Tag extends Model
 {
     public function blogs()
     {
-        return $this->belongsToMany('App\Blog', 'post_tag');
+        return $this->belongsToMany('App\Blog', 'blog_tag');
     }
 
     protected $fillable = [

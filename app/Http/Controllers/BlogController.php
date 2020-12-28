@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Blog;
 use App\Http\Resources\BlogResource;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -33,11 +34,24 @@ class BlogController extends Controller
     {
         $blog = new Blog;
 
+        $tags = [];
+        $tags_id = [];
+
+        preg_match_all('/([a-zA-z0-9０-９ぁ-んァ-ヶ亜-熙]+)/u', $request->tags, $match);
+        foreach ($match[1] as $tag) {
+            $record = Tag::firstOrCreate(['name' => $tag]);
+            array_push($tags, $record);
+        };
+
+        foreach ($tags as $tag) {
+            array_push($tags_id, $tag->id);
+        };
+
         $blog->title = $request->title;
         $blog->body = $request->body;
         $blog->user_id = $request->user_id;
-
         $blog->save();
+        $blog->tags()->attach($tags_id);
 
         return redirect('api/blogs');
     }

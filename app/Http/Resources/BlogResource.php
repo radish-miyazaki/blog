@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Tag;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class BlogResource extends JsonResource
@@ -25,6 +26,7 @@ class BlogResource extends JsonResource
                 'nickname' => $this->user->nickname
             ],
             'comments' => new CommentResource($this->comments),
+            'tags' => new TagResource($this->tags),
         ];
     }
 }
