@@ -67999,7 +67999,8 @@ var state = {
 var getters = {
     check: function (state) { return !!state.user; },
     id: function (state) { return state.user ? state.user.id : ''; },
-    nickname: function (state) { return state.user ? state.user.nickname : ''; }
+    nickname: function (state) { return state.user ? state.user.nickname : ''; },
+    admin: function (state) { return !!state.isAdmin; },
 };
 var mutations = {
     setUser: function (state, user) {
