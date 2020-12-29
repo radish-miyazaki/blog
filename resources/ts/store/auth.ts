@@ -9,8 +9,10 @@ const getters = {
   id: (state: any) => state.user ? state.user.id : '',
   nickname: (state: any) => state.user ? state.user.nickname : '',
   email: (state: any) => state.user ? state.user.email : '',
+  first_name: (state: any) => !! state.user ? state.user.first_name : '',
+  last_name: (state: any) => !! state.user ? state.user.last_name : '',
   name: (state: any) => state.user ? (state.user.first_name + ' ' + state.user.last_name) : '',
-  admin: (state: any) => !! state.user ? state.isAdmin : '',
+  admin: (state: any) => !! state.user ? state.user.isAdmin : '',
 }
 
 const mutations = {

@@ -11,6 +11,7 @@ import ShowBlog from './pages/ShowBlog.vue';
 import EditBlog from './pages/EditBlog.vue';
 import EditComment from './pages/EditComment.vue';
 import Profile from './pages/Profile.vue';
+import EditProfile from './pages/EditProfile.vue';
 
 // VueRouterプラグインを使用する
 // これによって<router-link />コンポーネントなどを使うことができる
@@ -59,6 +60,18 @@ const routes = [
   {
     path: '/profile',
     component: Profile,
+    beforeEnter(_: any, _2: any, next: any) {
+      if(!store.getters['auth/check']) {
+        alert('先にログインしてください。')
+        next('/login')
+      } else {
+        next()
+      }
+    }
+  },
+  {
+    path: '/profile/edit',
+    component: EditProfile,
     beforeEnter(_: any, _2: any, next: any) {
       if(!store.getters['auth/check']) {
         alert('先にログインしてください。')
