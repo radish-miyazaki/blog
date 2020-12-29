@@ -60,10 +60,24 @@ class BlogController extends Controller
     {
         $blog = Blog::with('user')->where('id', $id)->first();
 
+        $tags = [];
+        $tags_id = [];
+
+        preg_match_all('/([a-zA-z0-9０-９ぁ-んァ-ヶ亜-熙]+)/u', $request->tags, $match);
+        foreach ($match[1] as $tag) {
+            $record = Tag::firstOrCreate(['name' => $tag]);
+            array_push($tags, $record);
+        };
+
+        foreach ($tags as $tag) {
+            array_push($tags_id, $tag->id);
+        };
+
         $blog->title = $request->title;
         $blog->body = $request->body;
 
         $blog->update();
+        $blog->tags()->sync($tags_id);
 
         return redirect('api/blogs');
     }

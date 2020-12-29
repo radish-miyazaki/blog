@@ -2191,6 +2191,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "EditBlog",
@@ -2198,7 +2206,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       blog: null,
       title: '',
-      body: ''
+      body: '',
+      tags: ''
     };
   },
   props: {
@@ -2212,7 +2221,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response;
+        var response, i;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -2236,7 +2245,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.title = _this.blog.title;
                 _this.body = _this.blog.body;
 
-              case 9:
+                for (i = 0; i < _this.blog.tags.length; i++) {
+                  _this.tags += _this.blog.tags[i].name;
+                  _this.tags += ' ';
+                }
+
+              case 10:
               case "end":
                 return _context.stop();
             }
@@ -2254,13 +2268,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _this2.blog.title = _this2.title;
                 _this2.blog.body = _this2.body;
-                _context2.next = 4;
+                _this2.blog.tags = _this2.tags;
+                _context2.next = 5;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/blogs/".concat(_this2.id, "/update"), _this2.blog);
 
-              case 4:
+              case 5:
                 _this2.$router.push("/blogs/".concat(_this2.id));
 
-              case 5:
+              case 6:
               case "end":
                 return _context2.stop();
             }
@@ -5534,6 +5549,23 @@ var render = function() {
                     },
                     expression: "body"
                   }
+                }),
+                _vm._v(" "),
+                _c("v-text-field", {
+                  staticClass: "mb-2",
+                  attrs: {
+                    dense: "",
+                    height: "48px",
+                    outlined: "",
+                    label: "タグ"
+                  },
+                  model: {
+                    value: _vm.tags,
+                    callback: function($$v) {
+                      _vm.tags = $$v
+                    },
+                    expression: "tags"
+                  }
                 })
               ],
               1
@@ -5824,7 +5856,7 @@ var render = function() {
                                       "v-chip",
                                       {
                                         key: "" + j,
-                                        staticClass: "ml-1",
+                                        staticClass: "mr-2",
                                         attrs: {
                                           small: "",
                                           outlined: "",
@@ -5853,7 +5885,7 @@ var render = function() {
                   ],
                   null,
                   false,
-                  2194607639
+                  3835799530
                 )
               }),
               _vm._v(" "),
@@ -6389,14 +6421,12 @@ var render = function() {
                       _c("h3", [_vm._v(_vm._s(_vm.blog.title))])
                     ]),
                     _vm._v(" "),
-                    _c("v-divider"),
-                    _vm._v(" "),
                     _vm._l(_vm.blog.tags, function(tag, i) {
                       return _c(
                         "v-chip",
                         {
                           key: "" + i,
-                          staticClass: "ml-1 mt-3",
+                          staticClass: "mr-2 mb-3",
                           attrs: { color: "success", outlined: "" }
                         },
                         [
@@ -6408,6 +6438,8 @@ var render = function() {
                         1
                       )
                     }),
+                    _vm._v(" "),
+                    _c("v-divider"),
                     _vm._v(" "),
                     _c("div", { staticClass: "py-6 body-1" }, [
                       _vm._v("\n        " + _vm._s(_vm.blog.body) + "\n      ")

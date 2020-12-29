@@ -20,11 +20,10 @@
         <v-card-title class="text-center pa-8">
           <h3>{{ blog.title }}</h3>
         </v-card-title>
-        <v-divider />
         <v-chip
           v-for="(tag, i) in blog.tags"
           :key="`${i}`"
-          class="ml-1 mt-3"
+          class="mr-2 mb-3"
           color="success"
           outlined>
           <v-icon left>
@@ -32,6 +31,7 @@
           </v-icon>
           {{ tag.name }}
         </v-chip>
+        <v-divider />
         <div class="py-6 body-1">
           {{ blog.body }}
         </div>

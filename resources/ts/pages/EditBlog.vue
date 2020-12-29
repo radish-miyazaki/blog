@@ -36,6 +36,14 @@
           height="150px"
           v-model="body"
         ></v-textarea>
+        <v-text-field
+          dense
+          height="48px"
+          outlined
+          class="mb-2"
+          label="タグ"
+          v-model="tags"
+        ></v-text-field>
 
       </div>
       <div class="pb-8">
@@ -64,7 +72,8 @@ export default {
     return {
       blog: null,
       title: '',
-      body: ''
+      body: '',
+      tags: '',
     }
   },
 
@@ -85,11 +94,16 @@ export default {
       }
       this.title = this.blog.title
       this.body = this.blog.body
+      for (let i = 0;i < this.blog.tags.length; i++) {
+        this.tags += this.blog.tags[i].name
+        this.tags += ' '
+      }
     },
 
     async update() {
       this.blog.title = this.title;
       this.blog.body = this.body;
+      this.blog.tags = this.tags;
 
       await axios.post(`/api/blogs/${this.id}/update`, this.blog);
       this.$router.push(`/blogs/${this.id}`);

@@ -64,7 +64,7 @@
                 small
                 v-for="(tag, j) in blog.tags"
                 :key="`${j}`"
-                class="ml-1"
+                class="mr-2"
                 outlined
                 color="success">
                 {{ tag.name }}
