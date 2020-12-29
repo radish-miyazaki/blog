@@ -10,6 +10,7 @@ import PostBlog from './pages/PostBlog.vue';
 import ShowBlog from './pages/ShowBlog.vue';
 import EditBlog from './pages/EditBlog.vue';
 import EditComment from './pages/EditComment.vue';
+import Profile from './pages/Profile.vue';
 
 // VueRouterプラグインを使用する
 // これによって<router-link />コンポーネントなどを使うことができる
@@ -54,6 +55,18 @@ const routes = [
         next()
       }
     },
+  },
+  {
+    path: '/profile',
+    component: Profile,
+    beforeEnter(_: any, _2: any, next: any) {
+      if(!store.getters['auth/check']) {
+        alert('先にログインしてください。')
+        next('/login')
+      } else {
+        next()
+      }
+    }
   },
   {
     path: '/blogs/:id',
