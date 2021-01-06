@@ -17,7 +17,7 @@
         </v-btn>
       </div>
       <div v-if="blog">
-        <v-card-title class="text-center pa-8">
+        <v-card-title class="py-8">
           <h3>{{ blog.title }}</h3>
         </v-card-title>
         <v-chip

@@ -67,7 +67,14 @@ export default {
   methods: {
     async login() {
       await this.$store.dispatch('auth/login', this.loginForm)
-      this.$router.push('/')
+
+      if (this.$store.getters['auth/admin'] === 1) {
+        // 管理者の場合、ダッシュボードに遷移
+        this.$router.push('/admin/dashboard')
+      } else if (this.$store.getters['auth/admin'] === 0) {
+        // 管理者以外の場合、ブログ一覧画面に遷移
+        this.$router.push('/')
+      }
     }
   }
 }
