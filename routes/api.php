@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -24,6 +23,8 @@ Route::post('/register', 'Auth\RegisterController@register')->name('register');
 Route::get('/user', function () {
     return Auth::user();
 })->name('user');
+// プロフィール情報変更
+Route::post('/profile', 'UserController@updateProfile');
 
 // ブログ
 Route::get('blogs', 'BlogController@index');

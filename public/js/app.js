@@ -2558,6 +2558,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -2636,17 +2646,101 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "EditProfile",
   data: function data() {
     return {
-      updateForm: {
-        first_name: this.$store.getters['auth/first_name'],
-        last_name: this.$store.getters['auth/last_name'],
-        nickname: this.$store.getters['auth/nickname'],
-        email: this.$store.getters['auth/email']
-      }
+      user: null,
+      first_name: '',
+      last_name: '',
+      nickname: '',
+      email: ''
     };
+  },
+  methods: {
+    fetchProfile: function fetchProfile() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/user');
+
+              case 2:
+                response = _context.sent;
+                _this.user = response.data;
+                _this.first_name = _this.user.first_name;
+                _this.last_name = _this.user.last_name;
+                _this.nickname = _this.user.nickname;
+                _this.email = _this.user.email;
+
+              case 8:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    update: function update() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/profile', {
+                  first_name: _this2.first_name,
+                  last_name: _this2.last_name,
+                  nickname: _this2.nickname,
+                  email: _this2.email
+                });
+
+              case 2:
+                _context2.next = 4;
+                return _this2.$router.push('/profile');
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    }
+  },
+  watch: {
+    $route: {
+      handler: function handler() {
+        var _this3 = this;
+
+        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+            while (1) {
+              switch (_context3.prev = _context3.next) {
+                case 0:
+                  _context3.next = 2;
+                  return _this3.fetchProfile();
+
+                case 2:
+                case "end":
+                  return _context3.stop();
+              }
+            }
+          }, _callee3);
+        }))();
+      },
+      immediate: true
+    }
   }
 });
 
@@ -3043,6 +3137,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -3087,8 +3191,73 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Profile"
+  name: "Profile",
+  data: function data() {
+    return {
+      user: null,
+      first_name: '',
+      last_name: '',
+      nickname: '',
+      email: ''
+    };
+  },
+  methods: {
+    fetchProfile: function fetchProfile() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/user');
+
+              case 2:
+                response = _context.sent;
+                _this.user = response.data;
+                _this.first_name = _this.user.first_name;
+                _this.last_name = _this.user.last_name;
+                _this.nickname = _this.user.nickname;
+                _this.email = _this.user.email;
+
+              case 8:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    }
+  },
+  watch: {
+    $route: {
+      handler: function handler() {
+        var _this2 = this;
+
+        return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+            while (1) {
+              switch (_context2.prev = _context2.next) {
+                case 0:
+                  _context2.next = 2;
+                  return _this2.fetchProfile();
+
+                case 2:
+                case "end":
+                  return _context2.stop();
+              }
+            }
+          }, _callee2);
+        }))();
+      },
+      immediate: true
+    }
+  }
 });
 
 /***/ }),
@@ -5909,145 +6078,148 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "v-card",
-    {
-      staticClass: "mx-auto",
-      attrs: {
-        tile: _vm.$vuetify.breakpoint.sm || _vm.$vuetify.breakpoint.xs,
-        flat: "",
-        "max-width": "640"
-      }
-    },
-    [
-      _c("v-card-title", { staticClass: "text-center pa-8" }, [
-        _c("h3", [_vm._v("プロフィール編集画面")])
-      ]),
-      _vm._v(" "),
-      _c("v-divider"),
-      _vm._v(" "),
-      _c("div", { staticClass: "pt-6" }, [
-        _c(
-          "div",
-          [
+  return _vm.user
+    ? _c(
+        "v-card",
+        {
+          staticClass: "mx-auto",
+          attrs: {
+            tile: _vm.$vuetify.breakpoint.sm || _vm.$vuetify.breakpoint.xs,
+            flat: "",
+            "max-width": "640"
+          }
+        },
+        [
+          _c("v-card-title", { staticClass: "text-center pa-8" }, [
+            _c("h3", [_vm._v("プロフィール編集画面")])
+          ]),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _c("div", { staticClass: "pt-6" }, [
             _c(
-              "v-row",
+              "div",
               [
                 _c(
-                  "v-col",
-                  { attrs: { cols: "12", sm: "6" } },
+                  "v-row",
                   [
-                    _c("v-text-field", {
-                      attrs: {
-                        autofocus: "",
-                        dense: "",
-                        height: "48px",
-                        outlined: "",
-                        placeholder: "氏名（姓）",
-                        label: "氏名（姓）"
-                      },
-                      model: {
-                        value: _vm.updateForm.first_name,
-                        callback: function($$v) {
-                          _vm.$set(_vm.updateForm, "first_name", $$v)
-                        },
-                        expression: "updateForm.first_name"
-                      }
-                    })
+                    _c(
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6" } },
+                      [
+                        _c("v-text-field", {
+                          attrs: {
+                            autofocus: "",
+                            dense: "",
+                            height: "48px",
+                            outlined: "",
+                            placeholder: "氏名（姓）",
+                            label: "氏名（姓）"
+                          },
+                          model: {
+                            value: _vm.first_name,
+                            callback: function($$v) {
+                              _vm.first_name = $$v
+                            },
+                            expression: "first_name"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-col",
+                      { attrs: { cols: "12", sm: "6" } },
+                      [
+                        _c("v-text-field", {
+                          attrs: {
+                            dense: "",
+                            height: "48px",
+                            outlined: "",
+                            placeholder: "氏名（名）",
+                            label: "氏名（名）"
+                          },
+                          model: {
+                            value: _vm.last_name,
+                            callback: function($$v) {
+                              _vm.last_name = $$v
+                            },
+                            expression: "last_name"
+                          }
+                        })
+                      ],
+                      1
+                    )
                   ],
                   1
                 ),
                 _vm._v(" "),
-                _c(
-                  "v-col",
-                  { attrs: { cols: "12", sm: "6" } },
-                  [
-                    _c("v-text-field", {
-                      attrs: {
-                        dense: "",
-                        height: "48px",
-                        outlined: "",
-                        placeholder: "氏名（名）",
-                        label: "氏名（名）"
-                      },
-                      model: {
-                        value: _vm.updateForm.last_name,
-                        callback: function($$v) {
-                          _vm.$set(_vm.updateForm, "last_name", $$v)
-                        },
-                        expression: "updateForm.last_name"
-                      }
-                    })
-                  ],
-                  1
-                )
+                _c("v-text-field", {
+                  staticClass: "mb-2",
+                  attrs: {
+                    dense: "",
+                    height: "48px",
+                    outlined: "",
+                    placeholder: "ニックネーム",
+                    label: "ニックネーム"
+                  },
+                  model: {
+                    value: _vm.nickname,
+                    callback: function($$v) {
+                      _vm.nickname = $$v
+                    },
+                    expression: "nickname"
+                  }
+                }),
+                _vm._v(" "),
+                _c("v-text-field", {
+                  staticClass: "mb-2",
+                  attrs: {
+                    dense: "",
+                    height: "48px",
+                    outlined: "",
+                    placeholder: "メールアドレス",
+                    label: "メールアドレス"
+                  },
+                  model: {
+                    value: _vm.email,
+                    callback: function($$v) {
+                      _vm.email = $$v
+                    },
+                    expression: "email"
+                  }
+                })
               ],
               1
             ),
             _vm._v(" "),
-            _c("v-text-field", {
-              staticClass: "mb-2",
-              attrs: {
-                dense: "",
-                height: "48px",
-                outlined: "",
-                placeholder: "ニックネーム",
-                label: "ニックネーム"
-              },
-              model: {
-                value: _vm.updateForm.nickname,
-                callback: function($$v) {
-                  _vm.$set(_vm.updateForm, "nickname", $$v)
-                },
-                expression: "updateForm.nickname"
-              }
-            }),
-            _vm._v(" "),
-            _c("v-text-field", {
-              staticClass: "mb-2",
-              attrs: {
-                dense: "",
-                height: "48px",
-                outlined: "",
-                placeholder: "メールアドレス",
-                label: "メールアドレス"
-              },
-              model: {
-                value: _vm.updateForm.email,
-                callback: function($$v) {
-                  _vm.$set(_vm.updateForm, "email", $$v)
-                },
-                expression: "updateForm.email"
-              }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "pb-8" },
-          [
             _c(
-              "v-btn",
-              {
-                staticClass: "font-weight-bold",
-                attrs: {
-                  color: "#FFCB00",
-                  depressed: "",
-                  height: "48px",
-                  tile: ""
-                }
-              },
-              [_vm._v("\n        更新する\n      ")]
+              "div",
+              { staticClass: "pb-8" },
+              [
+                _c(
+                  "v-btn",
+                  {
+                    staticClass: "font-weight-bold",
+                    attrs: {
+                      color: "#FFCB00",
+                      depressed: "",
+                      height: "48px",
+                      tile: ""
+                    },
+                    on: { click: _vm.update }
+                  },
+                  [_vm._v("\n        更新する\n      ")]
+                )
+              ],
+              1
             )
-          ],
-          1
-        )
-      ])
-    ],
-    1
-  )
+          ])
+        ],
+        1
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -6519,75 +6691,79 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "v-card",
-    {
-      staticClass: "mx-auto",
-      attrs: {
-        tile: _vm.$vuetify.breakpoint.sm || _vm.$vuetify.breakpoint.xs,
-        flat: "",
-        "max-width": "640"
-      }
-    },
-    [
-      _c("v-card-title", { staticClass: "text-center pa-8" }, [
-        _c("h3", [_vm._v("プロフィール")])
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "text-right" },
+  return _vm.user
+    ? _c(
+        "v-card",
+        {
+          staticClass: "mx-auto",
+          attrs: {
+            tile: _vm.$vuetify.breakpoint.sm || _vm.$vuetify.breakpoint.xs,
+            flat: "",
+            "max-width": "640"
+          }
+        },
         [
+          _c("v-card-title", { staticClass: "text-center pa-8" }, [
+            _c("h3", [_vm._v("プロフィール")])
+          ]),
+          _vm._v(" "),
           _c(
-            "v-btn",
-            { attrs: { color: "primary" } },
+            "div",
+            { staticClass: "text-right" },
             [
               _c(
-                "router-link",
-                {
-                  staticClass:
-                    "font-weight-bold white--text text-decoration-none",
-                  attrs: { to: "/profile/edit" }
-                },
-                [_vm._v("\n        編集する\n      ")]
+                "v-btn",
+                { attrs: { color: "primary" } },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass:
+                        "font-weight-bold white--text text-decoration-none",
+                      attrs: { to: "/profile/edit" }
+                    },
+                    [_vm._v("\n        編集する\n      ")]
+                  )
+                ],
+                1
               )
             ],
             1
-          )
+          ),
+          _vm._v(" "),
+          _c("v-simple-table", { staticClass: "mt-6" }, [
+            _c("tbody", [
+              _c("tr", [
+                _c("th", [_vm._v("名前")]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v(_vm._s(_vm.first_name) + " " + _vm._s(_vm.last_name))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("th", [_vm._v("ニックネーム")]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(_vm.nickname))])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("th", [_vm._v("メールアドレス")]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(_vm.email))])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("th", [_vm._v("パスワード")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("**********")])
+              ])
+            ])
+          ])
         ],
         1
-      ),
-      _vm._v(" "),
-      _c("v-simple-table", { staticClass: "mt-6", attrs: { dark: "" } }, [
-        _c("tbody", [
-          _c("tr", [
-            _c("th", [_vm._v("名前")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(this.$store.getters["auth/name"]))])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", [_vm._v("ニックネーム")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(this.$store.getters["auth/nickname"]))])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", [_vm._v("メールアドレス")]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(this.$store.getters["auth/email"]))])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("th", [_vm._v("パスワード")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("**********")])
-          ])
-        ])
-      ])
-    ],
-    1
-  )
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
