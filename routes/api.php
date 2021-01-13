@@ -42,3 +42,5 @@ Route::post('blogs/{blog}/comments', 'CommentController@store');
 // ダッシュボード
 Route::get('/dashboard', 'DashboardController@chart');
 
+// ユーザ
+Route::get('/users', 'UserController@index');

@@ -14,6 +14,7 @@ import Profile from './pages/Profile.vue';
 import EditProfile from './pages/EditProfile.vue';
 
 import Dashboard from './pages/Dashboard.vue';
+import ShowUsers from './pages/ShowUsers.vue';
 
 // VueRouterプラグインを使用
 Vue.use(VueRouter);
@@ -101,6 +102,21 @@ const routes = [
   {
     path: '/admin/dashboard',
     component: Dashboard,
+    beforeEnter(_: any, _2: any, next: any) {
+      if(!store.getters['auth/check']) {
+        alert('先にログインしてください。')
+        next('/login')
+      } else if(store.getters['auth/admin'] === 0) {
+        alert('管理者権限がありません。')
+        next('/')
+      } else {
+        next()
+      }
+    }
+  },
+  {
+    path: '/admin/users',
+    component: ShowUsers,
     beforeEnter(_: any, _2: any, next: any) {
       if(!store.getters['auth/check']) {
         alert('先にログインしてください。')
