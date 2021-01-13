@@ -15,6 +15,7 @@ import EditProfile from './pages/EditProfile.vue';
 
 import Dashboard from './pages/Dashboard.vue';
 import ShowUsers from './pages/ShowUsers.vue';
+import ShowUser from './pages/ShowUser.vue';
 
 // VueRouterプラグインを使用
 Vue.use(VueRouter);
@@ -128,6 +129,11 @@ const routes = [
         next()
       }
     }
+  },
+  {
+    path: '/admin/users/:id',
+    component: ShowUser,
+    props: true
   },
   // 管理者用ページ //////////////////////////////
 ];

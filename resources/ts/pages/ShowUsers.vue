@@ -19,10 +19,18 @@
           </thead>
           <tbody>
           <tr v-for="(user, i) in users" :key="`${i}`">
-            <td>{{ user.first_name }} {{ user.last_name }}</td>
-            <td>{{ user.email }}</td>
+            <td>
+              <router-link
+                class="text-decoration-none font-weight-bold"
+                :to="`/admin/users/${user.id}`">
+                {{ user.first_name }} {{ user.last_name }}
+              </router-link>
+            </td>
+            <td>
+              {{ user.email }}
+            </td>
             <td class="text-center">
-              <v-icon v-if="user.isAdmin">
+              <v-icon v-if="user.isAdmin" color="indigo">
                 mdi-account
               </v-icon>
             </td>

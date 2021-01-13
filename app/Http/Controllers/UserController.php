@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +13,12 @@ class UserController extends Controller
     public function index()
     {
         return DB::table('users')->paginate(10);
+    }
+
+    public function show($id)
+    {
+        $user = DB::table('users')->where('id', $id)->first();
+        return new UserResource($user);
     }
 
     public function updateProfile(Request $request)
