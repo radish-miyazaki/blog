@@ -3,11 +3,11 @@
     <header>
       <Navbar />
     </header>
-    <main>
+    <v-main>
       <div class="container">
         <router-view />
       </div>
-    </main>
+    </v-main>
   </v-app>
 </template>
 

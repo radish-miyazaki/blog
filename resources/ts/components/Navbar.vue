@@ -1,6 +1,8 @@
 <template>
   <div>
     <v-app-bar
+      clipped-left
+      app
       dark
       color="teal"
     >
