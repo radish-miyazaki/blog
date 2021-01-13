@@ -30,6 +30,7 @@
     },
     "dependencies": {
         "chart.js": "^2.9.4",
+        "google-palette": "^1.1.0",
         "material-design-icons-iconfont": "^6.1.0",
         "vue-chartjs": "^3.5.1",
         "vue-router": "^3.4.9",
