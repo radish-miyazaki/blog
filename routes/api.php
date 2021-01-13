@@ -39,3 +39,6 @@ Route::post('comments/{id}/update', 'CommentController@update');
 Route::post('comments/{id}/destroy', 'CommentController@destroy');
 Route::post('blogs/{blog}/comments', 'CommentController@store');
 
+// ダッシュボード
+Route::get('/dashboard', 'DashboardController@chart');
+

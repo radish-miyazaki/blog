@@ -1,16 +1,17 @@
 <template>
-  <chart-container></chart-container>
+  <Chart />
 </template>
 
 <script>
-import ChartContainer from "../components/ChartContainer.vue";
+import Chart from '../components/Chart.vue'
 
 export default {
   name: "Dashboard",
 
   components: {
-    ChartContainer
+    Chart
   }
+
 }
 </script>
 
