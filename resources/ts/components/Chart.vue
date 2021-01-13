@@ -1,10 +1,10 @@
 <script>
-import { Bar } from 'vue-chartjs';
+import { Line } from 'vue-chartjs';
 import axios from 'axios';
 import * as palette from 'google-palette';
 
 export default {
-  extends: Bar,
+  extends: Line,
   name: "Chart",
 
   data() {
@@ -34,11 +34,16 @@ export default {
                   return '#' + hex
                 }
               ),
+              fill: false,
+              borderColor: 'rgba(0,0,0,0.1)',
               data: this.number,
+              pointHitRadius: 15,
             }]
           },
           // options
           {
+            responsive: true,
+            maintainAspectRatio: false,
             title: {
               display: true,
               text: '日別ブログ投稿数',
