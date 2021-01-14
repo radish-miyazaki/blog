@@ -18,6 +18,7 @@
           class="mb-2"
           label="タイトル"
           v-model="postForm.title"
+          :rules="[required]"
         ></v-text-field>
         <v-textarea
           label="本文"
@@ -25,6 +26,7 @@
           outlined
           height="150px"
           v-model="postForm.body"
+          :rules="[required]"
         ></v-textarea>
         <v-text-field
           dense
@@ -33,6 +35,7 @@
           class="mb-2"
           label="タグ"
           v-model="postForm.tags"
+          :rules="[required]"
         ></v-text-field>
 
       </div>
@@ -65,7 +68,8 @@ export default {
         body: '',
         user_id: '',
         tags: '',
-      }
+      },
+      required: value => !!value || "必ず入力してください。",
     }
   },
 

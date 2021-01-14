@@ -28,6 +28,7 @@
           class="mb-2"
           label="タイトル"
           v-model="title"
+          :rules="[required]"
         ></v-text-field>
         <v-textarea
           label="本文"
@@ -35,6 +36,7 @@
           outlined
           height="150px"
           v-model="body"
+          :rules="[required]"
         ></v-textarea>
         <v-text-field
           dense
@@ -43,6 +45,7 @@
           class="mb-2"
           label="タグ"
           v-model="tags"
+          :rules="[required]"
         ></v-text-field>
 
       </div>
@@ -74,6 +77,7 @@ export default {
       title: '',
       body: '',
       tags: '',
+      required: value => !!value || "必ず入力してください。",
     }
   },
 

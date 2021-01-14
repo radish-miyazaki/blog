@@ -62,7 +62,7 @@
           label="メールアドレス"
           class="mb-2"
           v-model="registerForm.email"
-          :rules="[required, email]"
+          :rules="[required, emailValidation]"
         ></v-text-field>
 
         <v-text-field
@@ -74,7 +74,7 @@
           label="パスワード"
           class="mb-2"
           v-model="registerForm.password"
-          :rules="[required, password]"
+          :rules="[required, passwordValidation]"
         ></v-text-field>
 
         <v-text-field
@@ -120,8 +120,8 @@ export default {
         password_confirm: '',
       },
       required: value => !!value || "必ず入力してください。",
-      email: value => /.+@.+\..+/.test(value) || '',
-      password: value => /^[\w-]{8,255}$/.test(value) || "8文字以上。半角英数字・ﾊｲﾌﾝ・ｱﾝﾀﾞｰﾊﾞｰが使えます。"
+      emailValidation: value => /.+@.+\..+/.test(value) || '',
+      passwordValidation: value => /^[\w-]{8,255}$/.test(value) || "8文字以上。半角英数字・ﾊｲﾌﾝ・ｱﾝﾀﾞｰﾊﾞｰが使えます。"
     }
   },
 

@@ -25,6 +25,7 @@
               placeholder="氏名（姓）"
               label="氏名（姓）"
               v-model="first_name"
+              :rules="[required]"
             ></v-text-field>
           </v-col>
           <v-col
@@ -38,6 +39,7 @@
               placeholder="氏名（名）"
               label="氏名（名）"
               v-model="last_name"
+              :rules="[required]"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -50,6 +52,7 @@
           label="ニックネーム"
           class="mb-2"
           v-model="nickname"
+          :rules="[required]"
         ></v-text-field>
 
         <v-text-field
@@ -60,6 +63,7 @@
           label="メールアドレス"
           class="mb-2"
           v-model="email"
+          :rules="[required, emailValidation]"
         ></v-text-field>
       </div>
       <div class="pb-8">
@@ -98,7 +102,9 @@ export default {
       first_name: '',
       last_name: '',
       email: '',
-      nickname: ''
+      nickname: '',
+      required: value => !!value || "必ず入力してください。",
+      emailValidation: value => /.+@.+\..+/.test(value) || '',
     }
   },
 

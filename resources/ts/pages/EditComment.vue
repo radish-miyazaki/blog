@@ -27,6 +27,7 @@
           outlined
           height="150px"
           v-model="text"
+          :rules="[required]"
         ></v-textarea>
       </div>
       <div class="pb-8">
@@ -55,6 +56,7 @@ export default {
     return {
       comment: null,
       text: '',
+      required: value => !!value || "必ず入力してください。",
     }
   },
 

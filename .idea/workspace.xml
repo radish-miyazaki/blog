@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="d0105eeb-60ec-46f1-bc55-9775ee6a2808" name="デフォルト変更リスト" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/ts/pages/EditBlog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ts/pages/EditBlog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/ts/pages/EditComment.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ts/pages/EditComment.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/ts/pages/EditProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ts/pages/EditProfile.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/ts/pages/EditUser.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ts/pages/EditUser.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/ts/pages/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ts/pages/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/ts/pages/PostBlog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ts/pages/PostBlog.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/ts/pages/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/ts/pages/Register.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -187,7 +190,7 @@
       <workItem from="1610515476317" duration="11926000" />
       <workItem from="1610529563364" duration="4970000" />
       <workItem from="1610612142102" duration="3489000" />
-      <workItem from="1610622236738" duration="1778000" />
+      <workItem from="1610622236738" duration="2390000" />
     </task>
     <servers />
   </component>
