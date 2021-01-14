@@ -16,6 +16,7 @@ import EditProfile from './pages/EditProfile.vue';
 import Dashboard from './pages/Dashboard.vue';
 import ShowUsers from './pages/ShowUsers.vue';
 import ShowUser from './pages/ShowUser.vue';
+import EditUser from './pages/EditUser.vue';
 
 // VueRouterプラグインを使用
 Vue.use(VueRouter);
@@ -133,8 +134,36 @@ const routes = [
   {
     path: '/admin/users/:id',
     component: ShowUser,
-    props: true
+    props: true,
+    beforeEnter(_: any, _2: any, next: any) {
+      if(!store.getters['auth/check']) {
+        alert('先にログインしてください。')
+        next('/login')
+      } else if(store.getters['auth/admin'] === 0) {
+        alert('管理者権限がありません。')
+        next('/')
+      } else {
+        next()
+      }
+    }
   },
+  {
+    path: '/admin/users/:id/edit',
+    component: EditUser,
+    props: true,
+    beforeEnter(_: any, _2: any, next: any) {
+      if(!store.getters['auth/check']) {
+        alert('先にログインしてください。')
+        next('/login')
+      } else if(store.getters['auth/admin'] === 0) {
+        alert('管理者権限がありません。')
+        next('/')
+      } else {
+        next()
+      }
+    }
+
+  }
   // 管理者用ページ //////////////////////////////
 ];
 

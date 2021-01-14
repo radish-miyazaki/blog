@@ -76,7 +76,6 @@ export default {
           page: parseInt(page),
         }
       }).then(res => {
-        console.log(res)
         this.users = res.data.data
         this.lastPage = res.data.last_page
       }).catch(e => console.log(e))
@@ -84,7 +83,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

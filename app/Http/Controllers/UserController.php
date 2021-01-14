@@ -23,7 +23,10 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
+        $user = DB::table('users')->where('id', $id)->limit(1);
+        $user->update($request->only(`first_name`, 'last_name', 'nickname', 'email'));
 
+        return redirect('/api/users');
     }
 
     public function destroy($id)

@@ -13,7 +13,11 @@
       <v-btn
         color="primary"
       >
-        編集する
+        <router-link
+          :to="`/admin/users/${this.id}/edit`"
+          class="font-weight-bold white--text text-decoration-none">
+          編集する
+        </router-link>
       </v-btn>
       <v-btn
         color="error"
@@ -53,7 +57,7 @@
 import axios from "axios";
 
 export default {
-  name: "ShowUser.vue",
+  name: "ShowUser",
 
   props: {
     id: {
@@ -72,7 +76,6 @@ export default {
     async fetchUser() {
       const response = await axios.get(`/api/users/${this.id}`);
       this.user = response.data.data;
-      console.log(this.user);
     },
 
     isAdminUser() {
