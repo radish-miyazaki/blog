@@ -9,6 +9,19 @@
     <v-card-title class="text-center pa-8">
       <h3>ユーザ詳細</h3>
     </v-card-title>
+    <div v-if="user.isAdmin === 0" class="text-right">
+      <v-btn
+        color="primary"
+      >
+        編集する
+      </v-btn>
+      <v-btn
+        color="error"
+        @click="destroy"
+      >
+        削除する
+      </v-btn>
+    </div>
     <v-simple-table class="mt-6">
       <tbody>
       <tr>
@@ -68,7 +81,14 @@ export default {
       } else {
         return '一般ユーザ'
       }
-    }
+    },
+
+    async destroy() {
+      if(confirm('本当に削除してよろしいですか？')) {
+        await axios.post(`/api/users/${this.id}/destroy`);
+        await this.$router.push('/admin/users');
+      }
+    },
   },
 
   watch: {

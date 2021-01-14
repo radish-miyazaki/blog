@@ -45,3 +45,5 @@ Route::get('/dashboard', 'DashboardController@chart');
 // ユーザ
 Route::get('/users', 'UserController@index');
 Route::get('/users/{id}', 'UserController@show');
+Route::post('/users/{id}/update', 'UserController@update');
+Route::post('/users/{id}/destroy', 'UserController@destroy');

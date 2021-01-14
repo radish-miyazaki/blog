@@ -21,6 +21,18 @@ class UserController extends Controller
         return new UserResource($user);
     }
 
+    public function update(Request $request, $id)
+    {
+
+    }
+
+    public function destroy($id)
+    {
+        User::destroy($id);
+
+        return redirect('/api/users');
+    }
+
     public function updateProfile(Request $request)
     {
         $user = Auth::user();
