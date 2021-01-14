@@ -89,7 +89,8 @@ export default {
       const response = await axios.get(`/api/blogs/${this.id}`)
       this.blog = response.data.data
 
-      if(this.blog.user.id !== this.$store.getters['auth/id']) {
+      if(this.blog.user.id !== this.$store.getters['auth/id']
+        && this.$store.getters['auth/admin'] === 0) {
         await this.$router.push('/')
       }
       this.title = this.blog.title

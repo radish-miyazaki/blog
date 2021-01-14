@@ -5,7 +5,7 @@
     <v-card
       flat
     >
-      <div v-if="isAuthor" class="text-right pt-3">
+      <div v-if="isAuthor || isAdmin" class="text-right pt-3">
         <v-btn
           color="primary"
         >
@@ -78,7 +78,7 @@
           <router-link
             :to="`/comments/${comment.id}`"
             class="mr-1 text-decoration-none"
-            v-if="isCommenter(comment)">
+            v-if="isCommenter(comment) || isAdmin">
             編集
           </router-link>
         </v-row>
@@ -113,6 +113,9 @@ export default {
     isLogin() {
       return this.$store.getters['auth/check']
     },
+    isAdmin() {
+      return this.$store.getters['auth/admin']
+    }
   },
 
   methods: {

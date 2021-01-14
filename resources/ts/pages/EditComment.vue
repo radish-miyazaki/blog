@@ -69,7 +69,9 @@ export default {
     async fetchComment() {
       const response = await axios.get(`/api/comments/${this.id}`)
       this.comment = response.data
-      if(this.comment.user.id !== this.$store.getters['auth/id']) {
+
+      if(this.comment.user.id !== this.$store.getters['auth/id']
+        && this.$store.getters['auth/admin'] === 0) {
         await this.$router.push('/') // 一つ前の画面に戻す
       }
       this.text = this.comment.text
