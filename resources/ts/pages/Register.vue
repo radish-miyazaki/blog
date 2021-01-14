@@ -24,6 +24,7 @@
               placeholder="氏名（姓）"
               label="氏名（姓）"
               v-model="registerForm.first_name"
+              :rules="[required]"
             ></v-text-field>
           </v-col>
           <v-col
@@ -37,6 +38,7 @@
               placeholder="氏名（名）"
               label="氏名（名）"
               v-model="registerForm.last_name"
+              :rules="[required]"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -49,6 +51,7 @@
           label="ニックネーム"
           class="mb-2"
           v-model="registerForm.nickname"
+          :rules="[required]"
         ></v-text-field>
 
         <v-text-field
@@ -59,6 +62,7 @@
           label="メールアドレス"
           class="mb-2"
           v-model="registerForm.email"
+          :rules="[required, email]"
         ></v-text-field>
 
         <v-text-field
@@ -70,6 +74,7 @@
           label="パスワード"
           class="mb-2"
           v-model="registerForm.password"
+          :rules="[required, password]"
         ></v-text-field>
 
         <v-text-field
@@ -81,6 +86,7 @@
           label="パスワード（確認）"
           class="mb-2"
           v-model="registerForm.password_confirm"
+          :rules="[required]"
         ></v-text-field>
       </div>
       <div class="pb-8">
@@ -111,8 +117,11 @@ export default {
         nickname: '',
         email: '',
         password: '',
-        password_confirm: ''
-      }
+        password_confirm: '',
+      },
+      required: value => !!value || "必ず入力してください。",
+      email: value => /.+@.+\..+/.test(value) || '',
+      password: value => /^[\w-]{8,255}$/.test(value) || "8文字以上。半角英数字・ﾊｲﾌﾝ・ｱﾝﾀﾞｰﾊﾞｰが使えます。"
     }
   },
 

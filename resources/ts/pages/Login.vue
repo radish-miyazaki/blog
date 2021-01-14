@@ -21,6 +21,7 @@
             v-model="loginForm.email"
             class="mb-2"
             label="メールアドレス"
+            :rules="[required, email]"
           ></v-text-field>
 
           <v-text-field
@@ -32,6 +33,7 @@
             v-model="loginForm.password"
             class="mb-2"
             label="パスワード"
+            :rules="[required]"
           ></v-text-field>
         </div>
         <div class="pb-8">
@@ -60,7 +62,9 @@ export default {
       loginForm: {
         email: '',
         password: ''
-      }
+      },
+      required: value => !!value || "必ず入力してください。",
+      email: value => /.+@.+\..+/.test(value) || '',
     }
   },
 
