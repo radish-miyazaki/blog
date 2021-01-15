@@ -5,6 +5,9 @@
     flat
     max-width="640"
   >
+    <div v-if="registerError">
+      {{ registerError }}
+    </div>
     <v-card-title class="text-center pa-8">
       <h3>会員登録</h3>
     </v-card-title>
@@ -106,6 +109,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: "Register",
 
@@ -125,11 +130,18 @@ export default {
     }
   },
 
+  computed: mapState({
+    apiStatus: state => state.auth.apiStatus,
+    registerError: state => state.auth.registerErrorMessage,
+  }),
+
   methods: {
     async register() {
       await this.$store.dispatch('auth/register', this.registerForm)
 
-      this.$router.push('/')
+      if(this.apiStatus) {
+        this.$router.push('/')
+      }
     }
   }
 

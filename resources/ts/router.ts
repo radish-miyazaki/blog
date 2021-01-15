@@ -18,6 +18,8 @@ import ShowUsers from './pages/ShowUsers.vue';
 import ShowUser from './pages/ShowUser.vue';
 import EditUser from './pages/EditUser.vue';
 
+import SystemError from './pages/error/System.vue';
+
 // VueRouterプラグインを使用
 Vue.use(VueRouter);
 
@@ -162,9 +164,12 @@ const routes = [
         next()
       }
     }
-
-  }
+  },
   // 管理者用ページ //////////////////////////////
+  {
+    path: '/500',
+    component: SystemError
+  }
 ];
 
 // VueRouterインスタンスを作成する

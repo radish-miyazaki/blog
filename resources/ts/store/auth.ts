@@ -1,7 +1,11 @@
 import axios from 'axios'
+import {CREATED, OK, UNPROCESSABLE_ENTITY} from '../util'
 
 const state = {
-  user: null
+  user: null,
+  apiStatus: null,
+  loginErrorMessage: null,
+  registerErrorMessage: null
 }
 
 const getters = {
@@ -18,6 +22,18 @@ const getters = {
 const mutations = {
   setUser (state: any, user: any) {
     state.user = user
+  },
+
+  setApiStatus(state: any, status: any) {
+    state.apiStatus = status
+  },
+
+  setLoginErrorMessages(state: any, message: string) {
+    state.loginErrorMessage = message
+  },
+
+  setRegisterErrorMessages(state: any, message: string) {
+    state.registerErrorMessage = message
   }
 }
 
@@ -28,8 +44,22 @@ const actions = {
    * @param data
    */
   async register({ commit }: any, data: any) {
+    commit('setApiStatus', null)
     const response = await axios.post('/api/register', data)
-    commit('setUser', response.data)
+
+    if (response.status === CREATED) {
+      commit('setApiStatus', true)
+      commit('setUser', response.data)
+      return false
+    }
+
+    commit('setApiStatus', false)
+    if(response.status === UNPROCESSABLE_ENTITY) {
+      commit('setRegisterErrorMessages', response.data.errors)
+    } else {
+      commit('error/setCode', response.status, { root: true })
+    }
+    return true
   },
 
   /**
@@ -38,8 +68,23 @@ const actions = {
    * @param data
    */
   async login({ commit }: any, data: any) {
+    commit('setApiStatus', null)
     const response = await axios.post('/api/login', data)
-    commit('setUser', response.data)
+      .catch(e => e.response || e)
+
+    if(response.status === OK) {
+      commit('setApiStatus', true)
+      commit('setUser', response.data)
+      return false
+    }
+
+    commit('setApiStatus', false)
+    if(response.status === UNPROCESSABLE_ENTITY) {
+      commit('setLoginErrorMessages', response.data.errors)
+    } else {
+      commit('error/setCode', response.status, { root: true })
+    }
+    return true
   },
 
   /**
@@ -47,8 +92,18 @@ const actions = {
    * @param commit
    */
   async logout({ commit }: any) {
-    await axios.post('/api/logout')
-    commit('setUser', null)
+    commit('setApiStatus', null)
+    const response = await axios.post('/api/logout')
+
+    if(response.status === OK) {
+      commit('setApiStatus', true)
+      commit('setUser', null)
+      return false
+    }
+
+    commit('setApiStatus', false)
+    commit('error/setCode', response.status, { root: true })
+    return true
   },
 
   /**
@@ -56,9 +111,20 @@ const actions = {
    * @param commit
    */
   async currentUser({ commit }: any) {
+    commit('setApiStatus', null)
     const response = await axios.get('/api/user')
     const user = response.data || null
-    commit('setUser', user)
+
+    if(response.status === OK) {
+      commit('setUser', user)
+      commit('setApiStatus', true)
+      return false
+    }
+
+    commit('setApiStatus', false)
+    commit('error/setCode', response.status, { root: true })
+
+    return true
   }
 }
 

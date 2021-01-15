@@ -6,6 +6,14 @@
       flat
       max-width="640"
     >
+      <div v-if="loginError">
+        <ul v-if="loginError.email">
+          <li v-for="msg in loginError.email" :key="msg">{{ msg }}</li>
+        </ul>
+        <ul v-if="loginError.password">
+          <li v-for="msg in loginError.password" :key="msg">{{ msg }}</li>
+        </ul>
+      </div>
       <v-card-title class="text-center pa-8">
         <h3>ログイン</h3>
       </v-card-title>
@@ -54,6 +62,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   name: "Login",
 
@@ -68,18 +77,35 @@ export default {
     }
   },
 
+  computed: {
+    ...mapState({
+      apiStatus: state => state.auth.apiStatus,
+      loginError: state => state.auth.loginErrorMessage
+    })
+  },
+
   methods: {
     async login() {
       await this.$store.dispatch('auth/login', this.loginForm)
 
-      if (this.$store.getters['auth/admin'] === 1) {
-        // 管理者の場合、ダッシュボードに遷移
-        this.$router.push('/admin/dashboard')
-      } else if (this.$store.getters['auth/admin'] === 0) {
-        // 管理者以外の場合、ブログ一覧画面に遷移
-        this.$router.push('/')
+      if(this.apiStatus) {
+        if (this.$store.getters['auth/admin'] === 1) {
+          // 管理者の場合、ダッシュボードに遷移
+          this.$router.push('/admin/dashboard')
+        } else if (this.$store.getters['auth/admin'] === 0) {
+          // 管理者以外の場合、ブログ一覧画面に遷移
+          this.$router.push('/')
+        }
       }
+    },
+
+    clearError() {
+      this.$store.commit('auth/setLoginErrorMessages', null)
     }
+  },
+
+  created() {
+    this.clearError()
   }
 }
 </script>
